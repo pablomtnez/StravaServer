@@ -56,15 +56,15 @@ public class Usuario {
 		
 		result.append("Nombre: ");
 		result.append(this.nombre);
-		result.append(", Fecha Nacimiento");
+		result.append(", Fecha Nacimiento: ");
 		result.append(this.fechaNac);
-		result.append(", Peso");
+		result.append(", Peso: ");
 		result.append(this.peso);
-		result.append(", Altura");
+		result.append(", Altura: ");
 		result.append(this.altura);
-		result.append(", FCM");
+		result.append(", FCM: ");
 		result.append(this.fcm);
-		result.append(", FCR");
+		result.append(", FCR: ");
 		result.append(this.fcr);
 		
 		return result.toString();
