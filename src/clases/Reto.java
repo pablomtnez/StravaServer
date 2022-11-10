@@ -67,6 +67,20 @@ public class Reto {
 		this.deporte = deporte;
 	}
 	
+	public void crearReto() {
+		
+	}
 	
+	public void obtenerRetosActivos() {
+		
+	}
+	
+	public void consultarRetos() {
+		
+	}
+	
+	public void aceptarReto() {
+		
+	}
 
 }

@@ -25,6 +25,9 @@ public class Login {
 		this.contrasena = contrasena;
 	}
 	
+	public void logIn() {
+		
+	}
 	
 
 }

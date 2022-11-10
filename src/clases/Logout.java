@@ -18,6 +18,8 @@ public class Logout {
 		this.token = token;
 	}
 	
-	
+	public void logOut() {
+		
+	}
 
 }

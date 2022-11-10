@@ -59,7 +59,9 @@ public class SesionEntrenamiento {
 		this.duracion = duracion;
 	}
 	
-	
+	public void crearManualSesionEntre() {
+		
+	}
 	
 
 }
