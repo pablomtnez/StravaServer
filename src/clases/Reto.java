@@ -67,6 +67,30 @@ public class Reto {
 		this.deporte = deporte;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		
+		result.append("Usuario: ");
+		result.append(this.usuario);
+		result.append("Sesion entrenamiento: ");
+		result.append(this.sesionEntrenamiento);
+		result.append(", Nombre: ");
+		result.append(this.nombre);
+		result.append(", Fecha inicio: ");
+		result.append(this.fechaIni);
+		result.append(", Fecha final: ");
+		result.append(this.fechaFin);
+		result.append(", Distancia: ");
+		result.append(this.distancia);
+		result.append(", Tiempo Objetivo: ");
+		result.append(this.tiempoObjetivo);
+		result.append(", Deporte: ");
+		result.append(this.deporte);
+		
+		return result.toString();
+	}
+	
 	public void crearReto() {
 		
 	}

@@ -59,6 +59,28 @@ public class SesionEntrenamiento {
 		this.duracion = duracion;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		
+		result.append("Usuario: ");
+		result.append(this.usuario);
+		result.append("Titulo: ");
+		result.append(this.titulo);
+		result.append(", Deporte: ");
+		result.append(this.deporte);
+		result.append(", Distancia: ");
+		result.append(this.distancia);
+		result.append(", Fecha inicio: ");
+		result.append(this.fechaIni);
+		result.append(", Hora inicio: ");
+		result.append(this.horaIni);
+		result.append(", Duracion: ");
+		result.append(this.duracion);
+		
+		return result.toString();
+	}
+	
 	public void crearManualSesionEntre() {
 		
 	}
