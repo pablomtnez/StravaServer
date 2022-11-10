@@ -1,5 +1,8 @@
 package dto;
 
-public class LogOutDTO {
+import java.io.Serializable;
+
+public class LogOutDTO implements Serializable{
+	
 
 }
