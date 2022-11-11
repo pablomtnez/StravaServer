@@ -100,18 +100,4 @@ public class Reto {
 		return result.toString();
 	}
 	
-	
-	public void obtenerRetosActivos() {
-		
-	}
-	
-	public void consultarRetos() {
-		
-	}
-	
-	public void aceptarReto() {
-		
-	}
-	
-
 }

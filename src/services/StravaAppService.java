@@ -9,6 +9,8 @@ import clases.Reto;
 import clases.SesionEntrenamiento;
 import clases.Usuario;
 
+//MIRAR DATES DE LAS CLASES
+
 public class StravaAppService {
 	
 	private List<Reto> retos = new ArrayList<>();
@@ -39,6 +41,9 @@ public class StravaAppService {
 		usuario0.setAltura(155);
 		usuario0.setFcm(169);
 		usuario0.setFcr(96);
+		
+		this.usuarios.add(usuario0);
+		this.usuarios.add(usuario1);
 		
 		//Creacion Login
 		
@@ -73,6 +78,9 @@ public class StravaAppService {
 		//sesion0.setHoraIni(0);
 		sesion1.setDuracion(200);
 		
+		this.sesiones.add(sesion0);
+		this.sesiones.add(sesion1);
+		
 		//Creacion Retos
 		
 		Reto reto0 = new Reto();
@@ -97,12 +105,26 @@ public class StravaAppService {
 		reto1.setDeporte("Running");
 		reto1.setEstado(false);
 		
+		this.retos.add(reto0);
+		this.retos.add(reto1);
 		
+		
+	}
+	
+	
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public List<SesionEntrenamiento> getSesiones() {
+		return sesiones;
 	}
 
 	public List<Reto> getRetos() {
 		return retos;
 	}
+	
 	
 	public void registrarUsuario(String nombre, Date fechaNac, float peso, float altura, float fcm, float fcr) {
 		
@@ -164,5 +186,17 @@ public class StravaAppService {
 		reto.setEstado(estado);
 		
 		retos.add(reto);
+	}
+	
+	public void obtenerRetosActivos() {
+		
+	}
+	
+	public void consultarRetos() {
+		
+	}
+	
+	public void aceptarReto() {
+		
 	}
 }
