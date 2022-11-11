@@ -1,7 +1,5 @@
 package dto;
 
-import java.util.Date;
-
 import clases.Reto;
 
 public class RetoAssembler {
