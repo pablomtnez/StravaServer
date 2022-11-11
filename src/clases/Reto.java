@@ -14,6 +14,7 @@ public class Reto {
 	private float distancia;
 	private float tiempoObjetivo;
 	private String deporte;
+	private boolean estado;
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -66,6 +67,12 @@ public class Reto {
 	public void setDeporte(String deporte) {
 		this.deporte = deporte;
 	}
+	public boolean getEstado() {
+		return estado;
+	}
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 	
 	@Override
 	public String toString() {
@@ -87,6 +94,8 @@ public class Reto {
 		result.append(this.tiempoObjetivo);
 		result.append(", Deporte: ");
 		result.append(this.deporte);
+		result.append("Estado: ");
+		result.append(this.estado);
 		
 		return result.toString();
 	}
@@ -106,5 +115,6 @@ public class Reto {
 	public void aceptarReto() {
 		
 	}
+	
 
 }

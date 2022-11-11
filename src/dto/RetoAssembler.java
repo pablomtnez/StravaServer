@@ -23,6 +23,7 @@ public class RetoAssembler {
 		dto.setDistancia(reto.getDistancia());
 		dto.setTiempoObjetivo(reto.getTiempoObjetivo());
 		dto.setDeporte(reto.getDeporte());
+		dto.setEstado(reto.getEstado());
 		
 		
 		return dto;
