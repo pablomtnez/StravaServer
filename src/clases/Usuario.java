@@ -49,10 +49,6 @@ public class Usuario {
 		this.fcr = fcr;
 	}
 	
-	public void registrar() {
-		
-	}
-	
 	@Override
 	public String toString() {
 		StringBuffer result = new StringBuffer();

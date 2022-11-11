@@ -100,9 +100,6 @@ public class Reto {
 		return result.toString();
 	}
 	
-	public void crearReto() {
-		
-	}
 	
 	public void obtenerRetosActivos() {
 		

@@ -80,10 +80,4 @@ public class SesionEntrenamiento {
 		
 		return result.toString();
 	}
-	
-	public void crearManualSesionEntre() {
-		
-	}
-	
-
 }
