@@ -162,7 +162,8 @@ public class StravaAppService {
 	}
 	*/
 	
-	public void aceptarReto() {
-		
+	public void aceptarReto(int i) {
+		retos.get(i).setEstado(true);
+		System.out.println("El reto de"+this.getRetos().get(i).getNombre()+"ha sido aceptado");
 	}
 }
