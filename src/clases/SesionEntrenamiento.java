@@ -1,7 +1,5 @@
 package clases;
 
-import java.util.Date;
-
 public class SesionEntrenamiento {
 	
 	private Usuario usuario;
@@ -9,8 +7,7 @@ public class SesionEntrenamiento {
 	private String titulo;
 	private String deporte;
 	private float distancia;
-	private Date fechaIni;
-	private float horaIni;
+	private String sFechaYHoraIni;
 	private float duracion;
 	
 	
@@ -40,17 +37,11 @@ public class SesionEntrenamiento {
 	public void setDistancia(float distancia) {
 		this.distancia = distancia;
 	}
-	public Date getFechaIni() {
-		return fechaIni;
+	public String getsFechaYHoraIni() {
+		return sFechaYHoraIni;
 	}
-	public void setFechaIni(Date fechaIni) {
-		this.fechaIni = fechaIni;
-	}
-	public float getHoraIni() {
-		return horaIni;
-	}
-	public void setHoraIni(float horaIni) {
-		this.horaIni = horaIni;
+	public void setsFechaYHoraIni(String sFechaYHoraIni) {
+		this.sFechaYHoraIni = sFechaYHoraIni;
 	}
 	public float getDuracion() {
 		return duracion;
@@ -71,10 +62,8 @@ public class SesionEntrenamiento {
 		result.append(this.deporte);
 		result.append(", Distancia: ");
 		result.append(this.distancia);
-		result.append(", Fecha inicio: ");
-		result.append(this.fechaIni);
-		result.append(", Hora inicio: ");
-		result.append(this.horaIni);
+		result.append(", Fecha y Hora de inicio: ");
+		result.append(this.sFechaYHoraIni);
 		result.append(", Duracion: ");
 		result.append(this.duracion);
 		

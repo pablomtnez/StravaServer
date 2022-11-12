@@ -1,7 +1,5 @@
 package clases;
 
-import java.util.Date;
-
 public class Reto {
 	
 	private Usuario usuario;
@@ -9,8 +7,8 @@ public class Reto {
 	private SesionEntrenamiento sesionEntrenamiento;
 	
 	private String nombre;
-	private Date fechaIni;
-	private Date fechaFin;
+	private String sfechaIni;
+	private String sfechaFin;
 	private float distancia;
 	private float tiempoObjetivo;
 	private String deporte;
@@ -37,17 +35,17 @@ public class Reto {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFechaIni() {
-		return fechaIni;
+	public String getsFechaIni() {
+		return sfechaIni;
 	}
-	public void setFechaIni(Date fechaIni) {
-		this.fechaIni = fechaIni;
+	public void setsFechaIni(String sfechaIni) {
+		this.sfechaIni = sfechaIni;
 	}
-	public Date getFechaFin() {
-		return fechaFin;
+	public String getsFechaFin() {
+		return sfechaFin;
 	}
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
+	public void setsFechaFin(String sfechaFin) {
+		this.sfechaFin = sfechaFin;
 	}
 	public float getDistancia() {
 		return distancia;
@@ -85,9 +83,9 @@ public class Reto {
 		result.append(", Nombre: ");
 		result.append(this.nombre);
 		result.append(", Fecha inicio: ");
-		result.append(this.fechaIni);
+		result.append(this.sfechaIni);
 		result.append(", Fecha final: ");
-		result.append(this.fechaFin);
+		result.append(this.sfechaFin);
 		result.append(", Distancia: ");
 		result.append(this.distancia);
 		result.append(", Tiempo Objetivo: ");

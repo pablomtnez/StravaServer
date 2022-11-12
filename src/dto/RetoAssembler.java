@@ -18,8 +18,8 @@ public class RetoAssembler {
 		RetoDTO dto = new RetoDTO();
 		
 		dto.setNombre(reto.getNombre());
-		dto.setFechaIni(reto.getFechaIni());
-		dto.setFechaFin(reto.getFechaFin());
+		dto.setFechaIni(reto.getsFechaIni());
+		dto.setFechaFin(reto.getsFechaFin());
 		dto.setDistancia(reto.getDistancia());
 		dto.setTiempoObjetivo(reto.getTiempoObjetivo());
 		dto.setDeporte(reto.getDeporte());

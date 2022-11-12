@@ -1,10 +1,8 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import clases.Login;
 import clases.Reto;
 import clases.SesionEntrenamiento;
 import clases.Usuario;
@@ -13,9 +11,9 @@ import clases.Usuario;
 
 public class StravaAppService {
 	
-	private List<Reto> retos = new ArrayList<>();
-	private List<Usuario> usuarios= new ArrayList<>();
 	private List<SesionEntrenamiento> sesiones = new ArrayList<>();
+	private List<Reto> retos = new ArrayList<>();
+	List<Reto> retosActivos = new ArrayList<>();
 	
 	public StravaAppService() {
 		
@@ -28,7 +26,9 @@ public class StravaAppService {
 		
 		Usuario usuario0 = new Usuario();
 		usuario0.setNombre("Juan");
-		//usuario0.setFechaNac();
+		usuario0.setEmail("juan@gmail.com");
+		usuario0.setContrasena("1234");
+		usuario0.setsFechaNac("15-04-2002");
 		usuario0.setPeso(78);
 		usuario0.setAltura(167);
 		usuario0.setFcm(190);
@@ -36,27 +36,13 @@ public class StravaAppService {
 		
 		Usuario usuario1 = new Usuario();
 		usuario1.setNombre("Laura");
-		//usuario1.setFechaNac();
-		usuario0.setPeso(60);
-		usuario0.setAltura(155);
-		usuario0.setFcm(169);
-		usuario0.setFcr(96);
-		
-		this.usuarios.add(usuario0);
-		this.usuarios.add(usuario1);
-		
-		//Creacion Login
-		
-		Login login0 = new Login();
-		login0.setUsuario(usuario0);
-		login0.setEmail("juan@gmail.com");
-		login0.setContrasena("1234");
-		
-		Login login1 = new Login();
-		login1.setUsuario(usuario1);
-		login1.setEmail("laura@gmail.com");
-		login1.setContrasena("5678");
-		
+		usuario1.setEmail("laura@gmail.com");
+		usuario1.setContrasena("5678");
+		usuario1.setsFechaNac("03-12-1998");
+		usuario1.setPeso(60);
+		usuario1.setAltura(155);
+		usuario1.setFcm(169);
+		usuario1.setFcr(96);
 		
 		//Creacion Sesiones Entrenamiento
 		
@@ -110,12 +96,6 @@ public class StravaAppService {
 		
 		
 	}
-	
-	
-
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
 
 	public List<SesionEntrenamiento> getSesiones() {
 		return sesiones;
@@ -124,49 +104,22 @@ public class StravaAppService {
 	public List<Reto> getRetos() {
 		return retos;
 	}
-	
-	
-	public void registrarUsuario(String nombre, Date fechaNac, float peso, float altura, float fcm, float fcr) {
 		
-		Usuario usuario = new Usuario();
-		usuario.setNombre(nombre);
-		usuario.setFechaNac(fechaNac);
-		usuario.setPeso(peso);
-		usuario.setAltura(altura);
-		usuario.setFcm(fcm);
-		usuario.setFcr(fcr);
-		
-		usuarios.add(usuario);
-	}
-	
-	public void crearManualSesionEntre(Usuario usuario,String nombreUsuario, String titulo, String deporte,float distancia, Date fechaIni, float horaIni, float duracion) {
-		
-		for (Usuario user : this.usuarios) {
-			if (user.getNombre() == nombreUsuario) {
-				usuario = user;
-			}
-		}
+	public void crearManualSesionEntre(Usuario usuario, String titulo, String deporte,float distancia, String fechaYHora, float duracion) {
 		
 		SesionEntrenamiento sesion = new SesionEntrenamiento();
 		sesion.setUsuario(usuario);
 		sesion.setTitulo(titulo);
 		sesion.setDeporte(deporte);
 		sesion.setDistancia(distancia);
-		sesion.setFechaIni(fechaIni);
-		sesion.setHoraIni(horaIni);
+		sesion.setsFechaYHoraIni(fechaYHora);
 		sesion.setDuracion(duracion);
 		
 		sesiones.add(sesion);
 		
 	}
 	
-	public void crearReto(String nombreUsuario, String tituloSesion, Usuario usuario, SesionEntrenamiento sesion, String nombre, Date fechaIni, Date fechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) {
-		
-		for (Usuario user : this.usuarios) {
-			if (user.getNombre() == nombreUsuario) {
-				usuario = user;
-			}
-		}
+	public void crearReto( String tituloSesion, Usuario usuario, SesionEntrenamiento sesion, String nombre, String fechaIni, String fechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) {
 		
 		for (SesionEntrenamiento entrenamiento : this.sesiones) {
 			if (entrenamiento.getTitulo() == tituloSesion) {
@@ -178,8 +131,8 @@ public class StravaAppService {
 		reto.setUsuario(usuario);
 		reto.setSesionEntrenamiento(sesion);
 		reto.setNombre(nombre);
-		reto.setFechaIni(fechaIni);
-		reto.setFechaFin(fechaFin);
+		reto.setsFechaIni(fechaIni);
+		reto.setsFechaFin(fechaFin);
 		reto.setDistancia(distancia);
 		reto.setTiempoObjetivo(tiempoObjetivo);
 		reto.setDeporte(deporte);
@@ -189,12 +142,25 @@ public class StravaAppService {
 	}
 	
 	public void obtenerRetosActivos() {
+		for (int i = 0; i< retos.size(); i++) {
+			
+			Reto r = retos.get(i);
+			
+			if(r.getEstado()==true) {
+				retosActivos.add(r);	
+		}
+		
+		System.out.println(retosActivos);
+		
+		}
 		
 	}
 	
+	/*
 	public void consultarRetos() {
 		
 	}
+	*/
 	
 	public void aceptarReto() {
 		

@@ -19,12 +19,11 @@ private static SesionEntrenamientoAssembler instance;
 		
 		SesionEntrenamientoDTO dto = new SesionEntrenamientoDTO();
 		
-		dto.setUsuario(null);
-		dto.setTitulo(null);
-		dto.setDistancia(0);
-		dto.setFechaIni(null);
-		dto.setHoraIni(0);
-		dto.setDuracion(0);
+		dto.setUsuario(sesionEntrenamiento.getUsuario());
+		dto.setTitulo(sesionEntrenamiento.getTitulo());
+		dto.setDistancia(sesionEntrenamiento.getDistancia());
+		dto.setsFechaYHoraIni(sesionEntrenamiento.getsFechaYHoraIni());
+		dto.setDuracion(sesionEntrenamiento.getDuracion());
 		
 		return dto;
 	}

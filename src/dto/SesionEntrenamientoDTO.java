@@ -1,7 +1,6 @@
 package dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import clases.Usuario;
 
@@ -14,8 +13,7 @@ public class SesionEntrenamientoDTO implements Serializable {
 	private String titulo;
 	private String deporte;
 	private float distancia;
-	private Date fechaIni;
-	private float horaIni;
+	private String sFechaYHoraIni;
 	private float duracion;
 	
 	
@@ -45,17 +43,11 @@ public class SesionEntrenamientoDTO implements Serializable {
 	public void setDistancia(float distancia) {
 		this.distancia = distancia;
 	}
-	public Date getFechaIni() {
-		return fechaIni;
+	public String getsFechaYHoraIni() {
+		return sFechaYHoraIni;
 	}
-	public void setFechaIni(Date fechaIni) {
-		this.fechaIni = fechaIni;
-	}
-	public float getHoraIni() {
-		return horaIni;
-	}
-	public void setHoraIni(float horaIni) {
-		this.horaIni = horaIni;
+	public void setsFechaYHoraIni(String sFechaYHoraIni) {
+		this.sFechaYHoraIni = sFechaYHoraIni;
 	}
 	public float getDuracion() {
 		return duracion;

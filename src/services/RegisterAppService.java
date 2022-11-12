@@ -2,9 +2,9 @@ package services;
 
 import clases.Usuario;
 
-public class LogInAppService {
+public class RegisterAppService {
 	
-	public  Usuario login(String email, String contrasena) {
+	public  Usuario register(String email, String contrasena) {
 		
 		Usuario usuario = new Usuario();
 		
@@ -17,13 +17,12 @@ public class LogInAppService {
 		usuario.setFcm(190);
 		usuario.setFcr(100);
 		
-		
-		if (usuario.getEmail().equals(email) && usuario.comprobarContrasena(contrasena)) {		
-			return usuario;
-		} else {
+		if (usuario.getEmail().equals(email)) {	
 			return null;
+		} else {
+			return usuario;
 		}
-	}
-	
 
+
+	}
 }

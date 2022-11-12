@@ -21,7 +21,6 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 	
-	
 	public String getEmail() {
 		return email;
 	}
@@ -33,6 +32,9 @@ public class Usuario {
 	}
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+	public boolean comprobarContrasena(String contrasena) {
+		return this.contrasena.equals(contrasena);
 	}
 	public String getsFechaNac() {
 		return sfechaNac;
@@ -72,6 +74,10 @@ public class Usuario {
 		
 		result.append("Nombre: ");
 		result.append(this.nombre);
+		result.append(", Email: ");
+		result.append(this.email);
+		result.append(", Contrasena: ");
+		result.append(this.contrasena);
 		result.append(", Fecha Nacimiento: ");
 		result.append(this.sfechaNac);
 		result.append(", Peso: ");

@@ -1,7 +1,6 @@
 package dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class UsuarioDTO  implements Serializable{
 	
@@ -10,7 +9,7 @@ public class UsuarioDTO  implements Serializable{
 	private String nombre;
 	private String email;
 	private String contrasena;
-	private Date fechaNac;
+	private String fechaNac;
 	private float peso;
 	private float altura;
 	private float fcm;
@@ -35,10 +34,11 @@ public class UsuarioDTO  implements Serializable{
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-	public Date getFechaNac() {
+	
+	public String getFechaNac() {
 		return fechaNac;
 	}
-	public void setFechaNac(Date fechaNac) {
+	public void setFechaNac(String fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 	public float getPeso() {
