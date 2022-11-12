@@ -20,6 +20,8 @@ public class UsuarioAssembler {
 		UsuarioDTO dto = new UsuarioDTO();
 		
 		dto.setNombre(null);
+		dto.setEmail(null);
+		dto.setContrasena(null);
 		dto.setFechaNac(null);
 		dto.setPeso(0);
 		dto.setAltura(0);

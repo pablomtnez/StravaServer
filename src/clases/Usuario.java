@@ -1,11 +1,13 @@
 package clases;
 
-import java.util.Date;
+
 
 public class Usuario {
 	
 	private String nombre;
-	private Date fechaNac;
+	private String email;
+	private String contrasena;
+	private String sfechaNac; 
 	private float peso;
 	private float altura;
 	private float fcm;	//Frecuencia cardiaca máxima
@@ -18,12 +20,27 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFechaNac() {
-		return fechaNac;
+	
+	
+	public String getEmail() {
+		return email;
 	}
-	public void setFechaNac(Date fechaNac) {
-		this.fechaNac = fechaNac;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+	public String getContrasena() {
+		return contrasena;
+	}
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+	public String getsFechaNac() {
+		return sfechaNac;
+	}
+	public void setsFechaNac(String sfechaNac) {
+		this.sfechaNac = sfechaNac;
+	}
+	
 	public float getPeso() {
 		return peso;
 	}
@@ -56,7 +73,7 @@ public class Usuario {
 		result.append("Nombre: ");
 		result.append(this.nombre);
 		result.append(", Fecha Nacimiento: ");
-		result.append(this.fechaNac);
+		result.append(this.sfechaNac);
 		result.append(", Peso: ");
 		result.append(this.peso);
 		result.append(", Altura: ");
