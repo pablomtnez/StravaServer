@@ -4,7 +4,7 @@ import clases.Usuario;
 
 public class RegisterAppService {
 	
-	public  Usuario register(String email, String contrasena) {
+	public  Usuario register(String email, String contrasena, String nombre, String fechaNac, float peso, float altura, float fcm, float fcr) {
 		
 		Usuario usuario = new Usuario();
 		

@@ -1,5 +1,8 @@
 package dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import clases.SesionEntrenamiento;
 
 public class SesionEntrenamientoAssembler {
@@ -26,6 +29,16 @@ private static SesionEntrenamientoAssembler instance;
 		dto.setDuracion(sesionEntrenamiento.getDuracion());
 		
 		return dto;
+	}
+	
+	public List<SesionEntrenamientoDTO> sesionEntrenamientoToDTO(List<SesionEntrenamiento> sesiones) {
+		List<SesionEntrenamientoDTO> dtos = new ArrayList<>();
+		
+		for (SesionEntrenamiento sesion : sesiones) {
+			dtos.add(this.sesionEntrenamientoToDTO(sesion));
+		}
+		
+		return dtos;		
 	}
 	
 

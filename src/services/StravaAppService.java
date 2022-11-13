@@ -141,18 +141,17 @@ public class StravaAppService {
 		retos.add(reto);
 	}
 	
-	public void obtenerRetosActivos() {
+	public List<Reto> obtenerRetosActivos() {
+		
 		for (int i = 0; i< retos.size(); i++) {
 			
 			Reto r = retos.get(i);
 			
 			if(r.getEstado()==true) {
 				retosActivos.add(r);	
+			}
 		}
-		
-		System.out.println(retosActivos);
-		
-		}
+		return retosActivos;
 		
 	}
 	
@@ -162,8 +161,16 @@ public class StravaAppService {
 	}
 	*/
 	
-	public void aceptarReto(int i) {
-		retos.get(i).setEstado(true);
-		System.out.println("El reto de"+this.getRetos().get(i).getNombre()+"ha sido aceptado");
+	public boolean aceptarReto(Usuario usuario, String nombre) {
+		Reto r =null;
+		for (int i = 0; i<retos.size(); i++) {
+			r = retos.get(i);
+		}
+		if (r.getNombre() == nombre) {
+			r.setEstado(true);
+			return true;
+		}else {
+			return false;
+		}
 	}
 }

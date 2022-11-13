@@ -1,5 +1,8 @@
 package dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import clases.Reto;
 
 public class RetoAssembler {
@@ -27,5 +30,15 @@ public class RetoAssembler {
 		
 		
 		return dto;
+	}
+	
+	public List<RetoDTO> retoToDTO(List<Reto> retos) {
+		List<RetoDTO> dtos = new ArrayList<>();
+		
+		for (Reto reto : retos) {
+			dtos.add(this.retoToDTO(reto));
+		}
+		
+		return dtos;		
 	}
 }
