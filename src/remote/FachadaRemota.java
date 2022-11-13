@@ -10,10 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 import clases.Reto;
+import clases.SesionEntrenamiento;
 //import clases.SesionEntrenamiento;
 import clases.Usuario;
 import dto.RetoAssembler;
 import dto.RetoDTO;
+import dto.SesionEntrenamientoAssembler;
+import dto.SesionEntrenamientoDTO;
 import services.LogInAppService;
 //import services.LogOutAppService;
 import services.RegisterAppService;
@@ -87,6 +90,34 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 			this.servidorEstado.remove(token);
 		}else {
 			throw new RemoteException("El usuario no ha iniciado sesión");
+		}
+	}
+	
+	@Override
+	public List<SesionEntrenamientoDTO> getSesiones() throws RemoteException {
+		System.out.println(" * FachadaRemota getSesiones()");
+		
+		List<SesionEntrenamiento> sesiones = stravaService.getSesiones();
+		
+		if (sesiones != null) {
+			//Convert domain object to DTO
+			return SesionEntrenamientoAssembler.getInstance().sesionEntrenamientoToDTO(sesiones);
+		} else {
+			throw new RemoteException("getSesiones() fails!");
+		}
+	}
+	
+	@Override
+	public List<RetoDTO> getRetos() throws RemoteException {
+		System.out.println(" * FachadaRemota getRetoss()");
+		
+		List<Reto> retos = stravaService.getRetos();
+		
+		if (retos != null) {
+			//Convert domain object to DTO
+			return RetoAssembler.getInstance().retoToDTO(retos);
+		} else {
+			throw new RemoteException("getRetos() fails!");
 		}
 	}
 
