@@ -147,4 +147,34 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 			throw new RemoteException("Para aceptar un reto tiene que haber iniciado sesion");
 		}
 	}
+
+	@Override
+	public Reto crearReto(String nombre, String sfechaIni, String sfechaFin, float distancia, float tiempoObjetivo,
+			String deporte, boolean estado) throws RemoteException {
+		System.out.println(" * FachadaRemota Crear Reto");
+		
+		SesionEntrenamiento sesionEntrenamiento;
+		Usuario usuario;
+		//Reto reto = stravaService.crearReto(deporte, usuario, sesionEntrenamiento, nombre, sfechaIni, sfechaFin, distancia, tiempoObjetivo, deporte, estado);
+		//El primer argumento es deporte, tendía que pedir el nombre de la sesión de entrenamiento, no?
+		return null;
+	}
+
+	@Override
+	public SesionEntrenamiento crearSesionEntrenamiento(String titulo, String deporte, float distancia,
+			String sFechaYHoraIni, float duracion) throws RemoteException {
+		System.out.println(" * FachadaRemota Crear Sesión de Entrenamiento");
+		SesionEntrenamiento sesionEntrenamiento = null;
+		//Usuario usuario = registerService.register(email, contrasena, nombre, fechaNac, peso, altura, fcm, fcr);
+		
+		if(sesionEntrenamiento != null) {
+			
+//				Tenemos que llamar a los métodos para añadir una sesión de entrenamiento.
+			
+			throw new RemoteException("La sesión de entrenamiento se ha creado correctamente.");
+			
+		}else {
+			throw new RemoteException("Ya hay una sesión de entrenamiento creada con ese nombre.");
+		}
+	}
 }

@@ -33,6 +33,6 @@ public interface IFachadaRemota extends Remote{
 	public Reto crearReto(String nombre, String sfechaIni, String sfechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) throws RemoteException;
 	
 	//Devuelve la sesión de entrenamiento
-	public SesionEntrenamiento crearSesionEntrenamiento(String titulo, String deporte, float distancia, String sFechaYHoraIni, float duracion);
+	public SesionEntrenamiento crearSesionEntrenamiento(String titulo, String deporte, float distancia, String sFechaYHoraIni, float duracion) throws RemoteException;
  
 }

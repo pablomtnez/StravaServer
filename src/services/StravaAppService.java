@@ -119,7 +119,7 @@ public class StravaAppService {
 		
 	}
 	
-	public void crearReto( String tituloSesion, Usuario usuario, SesionEntrenamiento sesion, String nombre, String fechaIni, String fechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) {
+	public Reto crearReto( String tituloSesion, Usuario usuario, SesionEntrenamiento sesion, String nombre, String fechaIni, String fechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) {
 		
 		for (SesionEntrenamiento entrenamiento : this.sesiones) {
 			if (entrenamiento.getTitulo() == tituloSesion) {
@@ -139,6 +139,7 @@ public class StravaAppService {
 		reto.setEstado(estado);
 		
 		retos.add(reto);
+		return reto;
 	}
 	
 	public List<Reto> obtenerRetosActivos() {
