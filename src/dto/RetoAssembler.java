@@ -27,8 +27,6 @@ public class RetoAssembler {
 		dto.setTiempoObjetivo(reto.getTiempoObjetivo());
 		dto.setDeporte(reto.getDeporte());
 		dto.setEstado(reto.getEstado());
-		
-		
 		return dto;
 	}
 	

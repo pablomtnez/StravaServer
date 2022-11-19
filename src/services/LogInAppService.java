@@ -1,12 +1,13 @@
 package services;
 
 import clases.Usuario;
+import clases.UsuarioLocal;
 
 public class LogInAppService {
 	
 	public  Usuario login(String email, String contrasena) {
 		
-		Usuario usuario = new Usuario();
+		UsuarioLocal usuario = new UsuarioLocal();
 		
 		usuario.setNombre("Juan");
 		usuario.setEmail("juan@gmail.com");

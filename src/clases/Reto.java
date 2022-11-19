@@ -11,8 +11,9 @@ public class Reto {
 	private String sfechaFin;
 	private float distancia;
 	private float tiempoObjetivo;
-	private String deporte;
+	private Deporte deporte;	//Añadimos así el enum?
 	private boolean estado;
+	private int codigo;	//Aplicarlo en todas las clases necesarias
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -59,10 +60,12 @@ public class Reto {
 	public void setTiempoObjetivo(float tiempoObjetivo) {
 		this.tiempoObjetivo = tiempoObjetivo;
 	}
-	public String getDeporte() {
+	
+	//Así el enum de deporte?
+	public Deporte getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(String deporte) {
+	public void setDeporte(Deporte deporte) {
 		this.deporte = deporte;
 	}
 	public boolean getEstado() {
@@ -70,6 +73,12 @@ public class Reto {
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}	
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	
 	@Override
@@ -97,5 +106,6 @@ public class Reto {
 		
 		return result.toString();
 	}
+	
 	
 }

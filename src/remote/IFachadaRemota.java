@@ -20,19 +20,20 @@ public interface IFachadaRemota extends Remote{
 	public void logout(long token) throws RemoteException;
 	
 	public List<SesionEntrenamientoDTO> getSesiones() throws RemoteException;
-	//Filtrar - usar Token (vinculado a un usuario que previamente ha hecho Token)
+	//Filtrar - usar Token (vinculado a un usuario que previamente ha hecho registro)
 	
 	public List<RetoDTO> getRetos() throws RemoteException;
-	//Filtrar - usar Token (vinculado a un usuario que previamente ha hecho Token)
+	//Filtrar - usar Token (vinculado a un usuario que previamente ha hecho registro)
 	
 	public List<RetoDTO> obtenerRetosActivos() throws RemoteException;
 	
 	public boolean aceptarReto(long token, String nombre) throws RemoteException;
 	
 	//Devuelve el reto
-	public Reto crearReto(String nombre, String sfechaIni, String sfechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) throws RemoteException;
+	//public Reto crearReto(String nombre, String sfechaIni, String sfechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) throws RemoteException;
+	public RetoDTO crearReto(long token, RetoDTO nuevoReto) throws RemoteException;
 	
 	//Devuelve la sesión de entrenamiento
-	public SesionEntrenamiento crearSesionEntrenamiento(String titulo, String deporte, float distancia, String sFechaYHoraIni, float duracion) throws RemoteException;
- 
+	//public SesionEntrenamiento crearSesionEntrenamiento(String titulo, String deporte, float distancia, String sFechaYHoraIni, float duracion) throws RemoteException;
+	public SesionEntrenamientoDTO crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion) throws RemoteException;
 }

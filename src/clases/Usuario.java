@@ -6,12 +6,15 @@ public class Usuario {
 	
 	private String nombre;
 	private String email;
-	private String contrasena;
+	//private String contrasena;
 	private String sfechaNac; 
 	private float peso;
 	private float altura;
 	private float fcm;	//Frecuencia cardiaca máxima
 	private float fcr;	//Frecuencia cardiaca reposo
+	
+	//Cómo lo añadimos?
+	private UsuarioTipo UsuarioTipo;
 	
 	
 	public String getNombre() {
@@ -27,15 +30,15 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getContrasena() {
-		return contrasena;
-	}
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-	public boolean comprobarContrasena(String contrasena) {
-		return this.contrasena.equals(contrasena);
-	}
+//	public String getContrasena() {
+//		return contrasena;
+//	}
+//	public void setContrasena(String contrasena) {
+//		this.contrasena = contrasena;
+//	}
+//	public boolean comprobarContrasena(String contrasena) {
+//		return this.contrasena.equals(contrasena);
+//	}
 	public String getsFechaNac() {
 		return sfechaNac;
 	}
@@ -67,6 +70,17 @@ public class Usuario {
 	public void setFcr(float fcr) {
 		this.fcr = fcr;
 	}
+	public String getSfechaNac() {
+		return sfechaNac;
+	}
+	public UsuarioTipo getUsuarioTipo() {
+		return UsuarioTipo;
+	}
+	public void setUsuarioTipo(UsuarioTipo usuarioTipo) {
+		UsuarioTipo = usuarioTipo;
+	}
+	
+	
 	
 	@Override
 	public String toString() {
@@ -76,8 +90,8 @@ public class Usuario {
 		result.append(this.nombre);
 		result.append(", Email: ");
 		result.append(this.email);
-		result.append(", Contrasena: ");
-		result.append(this.contrasena);
+		//result.append(", Contrasena: ");
+		//Sresult.append(this.contrasena);
 		result.append(", Fecha Nacimiento: ");
 		result.append(this.sfechaNac);
 		result.append(", Peso: ");
@@ -88,7 +102,8 @@ public class Usuario {
 		result.append(this.fcm);
 		result.append(", FCR: ");
 		result.append(this.fcr);
-		
+		result.append(", Tipo Usuario: ");
+		result.append(this.UsuarioTipo);
 		return result.toString();
 	}
 	

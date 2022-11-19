@@ -8,7 +8,7 @@ import java.util.HashMap;
 //import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+import clases.Deporte;
 import clases.Reto;
 import clases.SesionEntrenamiento;
 //import clases.SesionEntrenamiento;
@@ -18,10 +18,8 @@ import dto.RetoDTO;
 import dto.SesionEntrenamientoAssembler;
 import dto.SesionEntrenamientoDTO;
 import services.LogInAppService;
-//import services.LogOutAppService;
 import services.RegisterAppService;
 import services.StravaAppService;
-
 
 public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota{
 	
@@ -35,6 +33,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	//de este hashmap no estoy segura
 	private Map<Long, Usuario> registroEstado = new HashMap<>();
 	private Map<Long, Usuario> servidorEstado = new HashMap<>();
+	//mapa.containsKey(long), si esta bien lo meto y sino error(excepcion)
 	
 	private LogInAppService logInService = new LogInAppService();
 	//private LogOutAppService logOutService = new LogOutAppService();
@@ -149,32 +148,37 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	}
 
 	@Override
-	public Reto crearReto(String nombre, String sfechaIni, String sfechaFin, float distancia, float tiempoObjetivo,
-			String deporte, boolean estado) throws RemoteException {
+	public RetoDTO crearReto(long token, RetoDTO nuevoReto) throws RemoteException {
 		System.out.println(" * FachadaRemota Crear Reto");
 		
-		SesionEntrenamiento sesionEntrenamiento;
-		Usuario usuario;
-		//Reto reto = stravaService.crearReto(deporte, usuario, sesionEntrenamiento, nombre, sfechaIni, sfechaFin, distancia, tiempoObjetivo, deporte, estado);
-		//El primer argumento es deporte, tendía que pedir el nombre de la sesión de entrenamiento, no?
-		return null;
+		List<Reto> retos = stravaService.getRetos();
+		
+		if (retos != null) {
+			//Convertimos Reto a RetoDTO
+			return (RetoDTO) RetoAssembler.getInstance().retoToDTO(retos);
+		} else {
+			throw new RemoteException("getRetos() fails!");
+		}
+		//Llamamos al Assembler para pasar de RetoDTO a Reto
+		
+		
 	}
+	
+	/*List<Category> categories = bidService.getCategories();
+		
+		if (categories != null) {
+			//Convert domain object to DTO
+			return CategoryAssembler.getInstance().categoryToDTO(categories);
+		} else {
+			throw new RemoteException("getCategories() fails!");
+		}*/
 
 	@Override
-	public SesionEntrenamiento crearSesionEntrenamiento(String titulo, String deporte, float distancia,
-			String sFechaYHoraIni, float duracion) throws RemoteException {
-		System.out.println(" * FachadaRemota Crear Sesión de Entrenamiento");
-		SesionEntrenamiento sesionEntrenamiento = null;
-		//Usuario usuario = registerService.register(email, contrasena, nombre, fechaNac, peso, altura, fcm, fcr);
-		
-		if(sesionEntrenamiento != null) {
-			
-//				Tenemos que llamar a los métodos para añadir una sesión de entrenamiento.
-			
-			throw new RemoteException("La sesión de entrenamiento se ha creado correctamente.");
-			
-		}else {
-			throw new RemoteException("Ya hay una sesión de entrenamiento creada con ese nombre.");
-		}
+	public SesionEntrenamientoDTO crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return nuevaSesion;
 	}
+
+	
 }

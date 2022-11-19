@@ -1,11 +1,15 @@
 package services;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
+import clases.Deporte;
 import clases.Reto;
 import clases.SesionEntrenamiento;
 import clases.Usuario;
+import clases.UsuarioLocal;
 
 //MIRAR DATES DE LAS CLASES
 
@@ -24,7 +28,7 @@ public class StravaAppService {
 		
 		//Creacion Usuarios
 		
-		Usuario usuario0 = new Usuario();
+/*		Usuario usuario0 = new Usuario();
 		usuario0.setNombre("Juan");
 		usuario0.setEmail("juan@gmail.com");
 		usuario0.setContrasena("1234");
@@ -43,13 +47,33 @@ public class StravaAppService {
 		usuario1.setAltura(155);
 		usuario1.setFcm(169);
 		usuario1.setFcr(96);
+*/		
+		UsuarioLocal usuario0 = new UsuarioLocal();
+		usuario0.setNombre("Laura");
+		usuario0.setEmail("laura@gmail.com");
+		usuario0.setContrasena("5678");
+		usuario0.setsFechaNac("03-12-1998");
+		usuario0.setPeso(60);
+		usuario0.setAltura(155);
+		usuario0.setFcm(169);
+		usuario0.setFcr(96);
+		
+		UsuarioLocal usuario1 = new UsuarioLocal();
+		usuario1.setNombre("Laura");
+		usuario1.setEmail("laura@gmail.com");
+		usuario1.setContrasena("5678");
+		usuario1.setsFechaNac("03-12-1998");
+		usuario1.setPeso(60);
+		usuario1.setAltura(155);
+		usuario1.setFcm(169);
+		usuario1.setFcr(96);
 		
 		//Creacion Sesiones Entrenamiento
 		
 		SesionEntrenamiento sesion0 = new SesionEntrenamiento();
 		sesion0.setUsuario(usuario0);
 		sesion0.setTitulo("Ruta por el campo");
-		sesion0.setDeporte("Mountain Bike");
+		sesion0.setDeporte(Deporte.CICLISMO);
 		sesion0.setDistancia(50);
 		//sesion0.setFechaIni(null);
 		//sesion0.setHoraIni(0);
@@ -58,7 +82,7 @@ public class StravaAppService {
 		SesionEntrenamiento sesion1 = new SesionEntrenamiento();
 		sesion1.setUsuario(usuario1);
 		sesion1.setTitulo("Ruta por la Ria de Bilbao");
-		sesion1.setDeporte("Running");
+		sesion1.setDeporte(Deporte.RUNNING);
 		sesion1.setDistancia(5);
 		//sesion0.setFechaIni(null);
 		//sesion0.setHoraIni(0);
@@ -77,7 +101,7 @@ public class StravaAppService {
 		//reto0.setFechaFin(null);
 		reto0.setDistancia(300);
 		reto0.setTiempoObjetivo(90);
-		reto0.setDeporte("Mountain Bike");
+		reto0.setDeporte(Deporte.CICLISMO);
 		reto0.setEstado(false);
 		
 		Reto reto1 = new Reto();
@@ -88,7 +112,7 @@ public class StravaAppService {
 		//reto1.setFechaFin(null);
 		reto1.setDistancia(2);
 		reto1.setTiempoObjetivo(60);
-		reto1.setDeporte("Running");
+		reto1.setDeporte(Deporte.RUNNING);
 		reto1.setEstado(false);
 		
 		this.retos.add(reto0);
@@ -105,7 +129,7 @@ public class StravaAppService {
 		return retos;
 	}
 		
-	public void crearManualSesionEntre(Usuario usuario, String titulo, String deporte,float distancia, String fechaYHora, float duracion) {
+	public void crearManualSesionEntre(Usuario usuario, String titulo, Deporte deporte,float distancia, String fechaYHora, float duracion) {
 		
 		SesionEntrenamiento sesion = new SesionEntrenamiento();
 		sesion.setUsuario(usuario);
@@ -118,28 +142,16 @@ public class StravaAppService {
 		sesiones.add(sesion);
 		
 	}
-	
-	public Reto crearReto( String tituloSesion, Usuario usuario, SesionEntrenamiento sesion, String nombre, String fechaIni, String fechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) {
-		
-		for (SesionEntrenamiento entrenamiento : this.sesiones) {
-			if (entrenamiento.getTitulo() == tituloSesion) {
-				sesion = entrenamiento;
+	//Guardar reto
+	public boolean crearReto( Reto reto) {
+			if(!retos.contains(reto)) {
+				this.retos.add(reto);
+				return true;
+			}else {
+				return false;
 			}
-		}
+			//comprobar si el reto existe o no, si no existe lo almaceno y devuelvo true y sino false
 		
-		Reto reto = new Reto();
-		reto.setUsuario(usuario);
-		reto.setSesionEntrenamiento(sesion);
-		reto.setNombre(nombre);
-		reto.setsFechaIni(fechaIni);
-		reto.setsFechaFin(fechaFin);
-		reto.setDistancia(distancia);
-		reto.setTiempoObjetivo(tiempoObjetivo);
-		reto.setDeporte(deporte);
-		reto.setEstado(estado);
-		
-		retos.add(reto);
-		return reto;
 	}
 	
 	public List<Reto> obtenerRetosActivos() {

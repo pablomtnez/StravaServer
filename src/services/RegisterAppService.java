@@ -1,12 +1,13 @@
 package services;
 
 import clases.Usuario;
+import clases.UsuarioLocal;
 
 public class RegisterAppService {
 	
 	public  Usuario register(String email, String contrasena, String nombre, String fechaNac, float peso, float altura, float fcm, float fcr) {
 		
-		Usuario usuario = new Usuario();
+		UsuarioLocal usuario = new UsuarioLocal();
 		
 		usuario.setNombre("Juan");
 		usuario.setEmail("juan@gmail.com");

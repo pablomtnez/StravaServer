@@ -5,7 +5,7 @@ public class SesionEntrenamiento {
 	private Usuario usuario;
 	
 	private String titulo;
-	private String deporte;
+	private Deporte deporte;
 	private float distancia;
 	private String sFechaYHoraIni;
 	private float duracion;
@@ -25,10 +25,10 @@ public class SesionEntrenamiento {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getDeporte() {
+	public Deporte getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(String deporte) {
+	public void setDeporte(Deporte deporte) {
 		this.deporte = deporte;
 	}
 	public float getDistancia() {

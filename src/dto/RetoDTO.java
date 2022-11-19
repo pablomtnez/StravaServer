@@ -2,6 +2,8 @@ package dto;
 
 import java.io.Serializable;
 
+import clases.Deporte;
+
 public class RetoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -10,7 +12,7 @@ public class RetoDTO implements Serializable{
 	private String fechaFin;
 	private float distancia;
 	private float tiempoObjetivo;
-	private String deporte;
+	private Deporte deporte;
 	private boolean estado;
 	
 	public String getNombre() {
@@ -43,11 +45,11 @@ public class RetoDTO implements Serializable{
 	public void setTiempoObjetivo(float tiempoObjetivo) {
 		this.tiempoObjetivo = tiempoObjetivo;
 	}
-	public String getDeporte() {
+	public Deporte getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(String deporte) {
-		this.deporte = deporte;
+	public void setDeporte(Deporte deporte2) {
+		this.deporte = deporte2;
 	}
 	public boolean getEstado() {
 		return estado;
