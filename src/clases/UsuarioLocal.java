@@ -18,7 +18,7 @@ public class UsuarioLocal extends Usuario {
 	@Override
 	public String toString() {
 		return "UsuarioLocal [contrasena=" + contrasena + ", getContrasena()=" + getContrasena() + ", getNombre()="
-				+ getNombre() + ", getEmail()=" + getEmail() + ", getsFechaNac()=" + getsFechaNac() + ", getPeso()="
+				+ getNombre() + ", getEmail()=" + getEmail() + ", getsFechaNac()=" + getFechaNac() + ", getPeso()="
 				+ getPeso() + ", getAltura()=" + getAltura() + ", getFcm()=" + getFcm() + ", getFcr()=" + getFcr()
 				+ ", toString()=" + super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ "]";

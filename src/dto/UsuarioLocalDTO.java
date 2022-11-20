@@ -2,7 +2,9 @@ package dto;
 
 import java.io.Serializable;
 
-public class UsuarioLocalDTO extends UsuarioDTO implements Serializable {
+import clases.UsuarioLocal;
+
+public class UsuarioLocalDTO extends UsuarioLocal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 		private String contrasena;
@@ -14,16 +16,15 @@ public class UsuarioLocalDTO extends UsuarioDTO implements Serializable {
 			this.contrasena = contrasena;
 		}
 		
-		
 		@Override
 		public String toString() {
 			return "UsuarioLocalDTO [contrasena=" + contrasena + ", getContrasena()=" + getContrasena()
-					+ ", getNombre()=" + getNombre() + ", getEmail()=" + getEmail() + ", getFechaNac()=" + getFechaNac()
-					+ ", getPeso()=" + getPeso() + ", getAltura()=" + getAltura() + ", getFcm()=" + getFcm()
-					+ ", getFcr()=" + getFcr() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-					+ ", toString()=" + super.toString() + "]";
+					+ ", toString()=" + super.toString() + ", getNombre()=" + getNombre() + ", getEmail()=" + getEmail()
+					+ ", getsFechaNac()=" + getFechaNac() + ", getPeso()=" + getPeso() + ", getAltura()=" + getAltura()
+					+ ", getFcm()=" + getFcm() + ", getFcr()=" + getFcr() + ", getSfechaNac()=" + getSfechaNac()
+					+ ", getUsuarioTipo()=" + getUsuarioTipo() + ", getClass()=" + getClass() + ", hashCode()="
+					+ hashCode() + "]";
 		}
-		
 		
 		
 }

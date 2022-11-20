@@ -20,7 +20,8 @@ public interface IFachadaRemota extends Remote{
 	public long registro(UsuarioLocalDTO usuario)throws RemoteException;	
 	//De momento se queda como UsuarioDTO pero habrá que cambiarlo a UsuarioLocalDTO
 	
-	public long login(String email, String contrasena) throws RemoteException;
+//	public long login(String email, String contrasena) throws RemoteException;
+	public long login(UsuarioLocalDTO usuario) throws RemoteException;
 	
 	public void logout(long token) throws RemoteException;
 	

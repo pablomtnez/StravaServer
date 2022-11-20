@@ -7,7 +7,7 @@ public class Usuario {
 	private String nombre;
 	private String email;
 	//private String contrasena;
-	private String sfechaNac; 
+	private String fechaNac; 
 	private float peso;
 	private float altura;
 	private float fcm;	//Frecuencia cardiaca máxima
@@ -39,11 +39,11 @@ public class Usuario {
 //	public boolean comprobarContrasena(String contrasena) {
 //		return this.contrasena.equals(contrasena);
 //	}
-	public String getsFechaNac() {
-		return sfechaNac;
+	public String getFechaNac() {
+		return fechaNac;
 	}
-	public void setsFechaNac(String sfechaNac) {
-		this.sfechaNac = sfechaNac;
+	public void setFechaNac(String sfechaNac) {
+		this.fechaNac = sfechaNac;
 	}
 	
 	public float getPeso() {
@@ -71,7 +71,7 @@ public class Usuario {
 		this.fcr = fcr;
 	}
 	public String getSfechaNac() {
-		return sfechaNac;
+		return fechaNac;
 	}
 	public UsuarioTipo getUsuarioTipo() {
 		return UsuarioTipo;
@@ -93,7 +93,7 @@ public class Usuario {
 		//result.append(", Contrasena: ");
 		//Sresult.append(this.contrasena);
 		result.append(", Fecha Nacimiento: ");
-		result.append(this.sfechaNac);
+		result.append(this.fechaNac);
 		result.append(", Peso: ");
 		result.append(this.peso);
 		result.append(", Altura: ");

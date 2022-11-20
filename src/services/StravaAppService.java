@@ -52,7 +52,7 @@ public class StravaAppService {
 		usuario0.setNombre("Laura");
 		usuario0.setEmail("laura@gmail.com");
 		usuario0.setContrasena("5678");
-		usuario0.setsFechaNac("03-12-1998");
+		usuario0.setFechaNac("03-12-1998");
 		usuario0.setPeso(60);
 		usuario0.setAltura(155);
 		usuario0.setFcm(169);
@@ -62,7 +62,7 @@ public class StravaAppService {
 		usuario1.setNombre("Laura");
 		usuario1.setEmail("laura@gmail.com");
 		usuario1.setContrasena("5678");
-		usuario1.setsFechaNac("03-12-1998");
+		usuario1.setFechaNac("03-12-1998");
 		usuario1.setPeso(60);
 		usuario1.setAltura(155);
 		usuario1.setFcm(169);

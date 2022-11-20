@@ -34,7 +34,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	private static final long serialVersionUID = 1L;
 
 	//de este hashmap no estoy segura
-	private Map<Long, UsuarioDTO> registroEstado = new HashMap<>();
+	private Map<Long, UsuarioLocalDTO> registroEstado = new HashMap<>();
 	private Map<Long, Usuario> servidorEstado = new HashMap<>();
 	//mapa.containsKey(long), si esta bien lo meto y sino error(excepcion)
 	
@@ -66,10 +66,10 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	}
 	
 	@Override
-	public synchronized long login (String email, String contrasena) throws RemoteException{
-		System.out.println(" * FachadaRemota login(): " + email + " / " + contrasena);
+	public synchronized long login (UsuarioLocalDTO usuario) throws RemoteException{
+		System.out.println(" * FachadaRemota login(): " + usuario.getEmail() + " / " + usuario.getContrasena());
 		
-		Usuario usuario = logInService.login(email, contrasena);
+		usuario = logInService.login(usuario.getEmail(), usuario.getContrasena());
 		
 		if(usuario != null) {
 			if(!this.servidorEstado.values().contains(usuario)) {

@@ -2,17 +2,18 @@ package services;
 
 import clases.Usuario;
 import clases.UsuarioLocal;
+import dto.UsuarioLocalDTO;
 
 public class LogInAppService {
 	
-	public  Usuario login(String email, String contrasena) {
+	public  UsuarioLocalDTO login(String email, String contrasena) {
 		
-		UsuarioLocal usuario = new UsuarioLocal();
+		UsuarioLocalDTO usuario = new UsuarioLocalDTO();
 		
 		usuario.setNombre("Juan");
 		usuario.setEmail("juan@gmail.com");
 		usuario.setContrasena("1234");
-		usuario.setsFechaNac("15-04-2002");
+		usuario.setFechaNac("15-04-2002");
 		usuario.setPeso(78);
 		usuario.setAltura(167);
 		usuario.setFcm(190);
