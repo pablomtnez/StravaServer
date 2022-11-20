@@ -26,13 +26,13 @@ public interface IFachadaRemota extends Remote{
 	
 	public void logout(long token) throws RemoteException;
 	
-	public List<SesionEntrenamientoDTO> getSesiones() throws RemoteException;
+	public List<SesionEntrenamientoDTO> getSesiones(long token) throws RemoteException;
 	//Filtrar - usar Token (vinculado a un usuario que previamente ha hecho registro)
 	
-	public List<RetoDTO> getRetos() throws RemoteException;
+	public List<RetoDTO> getRetos(long token) throws RemoteException;
 	//Filtrar - usar Token (vinculado a un usuario que previamente ha hecho registro)
 	
-	public List<RetoDTO> obtenerRetosActivos() throws RemoteException;
+	public List<RetoDTO> obtenerRetosActivos(long token) throws RemoteException;
 	
 	public boolean aceptarReto(long token, String nombre) throws RemoteException;
 	

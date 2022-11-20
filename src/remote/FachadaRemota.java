@@ -97,43 +97,55 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	}
 	
 	@Override
-	public List<SesionEntrenamientoDTO> getSesiones() throws RemoteException {
+	public List<SesionEntrenamientoDTO> getSesiones(long token) throws RemoteException {
 		System.out.println(" * FachadaRemota getSesiones()");
 		
 		List<SesionEntrenamientoDTO> sesiones = stravaService.getSesiones();
 		
-		if (sesiones != null) {
-			//Convert domain object to DTO
-			return (List<SesionEntrenamientoDTO>)SesionEntrenamientoAssembler.getInstance().dtoToSesionEntrenamiento((SesionEntrenamientoDTO)sesiones);
-		} else {
-			throw new RemoteException("getSesiones() fails!");
+		if (this.servidorEstado.containsKey(token)) {
+			if (sesiones != null) {
+				//Convert domain object to DTO
+				return (List<SesionEntrenamientoDTO>)SesionEntrenamientoAssembler.getInstance().dtoToSesionEntrenamiento((SesionEntrenamientoDTO)sesiones);
+			} else {
+				throw new RemoteException("getSesiones() fails!");
+			}
+		}else {
+			throw new RemoteException("Necesita iniciar sesion antes");
 		}
+			
 	}
 	
 	@Override
-	public List<RetoDTO> getRetos() throws RemoteException {
+	public List<RetoDTO> getRetos(long token) throws RemoteException {
 		System.out.println(" * FachadaRemota getRetoss()");
 		
 		List<RetoDTO> retos = stravaService.getRetos();
 		
-		if (retos != null) {
-			//Convert domain object to DTO
-			return (List<RetoDTO>) RetoAssembler.getInstance().dtoToReto((RetoDTO) retos);
-		} else {
-			throw new RemoteException("getRetos() fails!");
+		if (this.servidorEstado.containsKey(token)) {
+			if (retos != null) {
+				//Convert domain object to DTO
+				return (List<RetoDTO>) RetoAssembler.getInstance().dtoToReto((RetoDTO) retos);
+			} else {
+				throw new RemoteException("getRetos() fails!");
+			}
+		}else {
+			throw new RemoteException("Necesita iniciar sesion antes");
 		}
 	}
 
 	@Override//esta ns si está bien
-	public List<RetoDTO> obtenerRetosActivos() throws RemoteException {
+	public List<RetoDTO> obtenerRetosActivos(long token) throws RemoteException {
 		System.out.println(" * FachadaRemota Obtener Retos Activos");
 		
 		List<RetoDTO>retosActivos = stravaService.getRetos();
-		
-		if(retosActivos != null) {
-			return (List<RetoDTO>) RetoAssembler.getInstance().dtoToReto((RetoDTO) retosActivos);
+		if (this.servidorEstado.containsKey(token)) {
+			if(retosActivos != null) {
+				return (List<RetoDTO>) RetoAssembler.getInstance().dtoToReto((RetoDTO) retosActivos);
+			}else {
+				throw new RemoteException("obtenerRetosActivos ha fallado");
+			}
 		}else {
-			throw new RemoteException("obtenerRetosActivos ha fallado");
+			throw new RemoteException("Necesita iniciar sesion antes");
 		}
 	}
 
@@ -157,12 +169,16 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	
 		List<RetoDTO> retos = stravaService.getRetos();
 		
-		if (retos.contains(nuevoReto)) {
-			//Convertimos Reto a RetoDTO
-				return RetoAssembler.getInstance().dtoToReto((RetoDTO) retos);
-		} else {
-				throw new RemoteException("crearReto fails!");
+		if (this.servidorEstado.containsKey(token)) {
+			if (retos.contains(nuevoReto)) {
+				//Convertimos Reto a RetoDTO
+					return RetoAssembler.getInstance().dtoToReto((RetoDTO) retos);
+			} else {
+					throw new RemoteException("crearReto fails!");
 			}
+		}else {
+			throw new RemoteException("Necesita iniciar sesion antes");
+		}
 		//Llamamos al Assembler para pasar de RetoDTO a Reto		
 	}
 
@@ -171,11 +187,16 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		
 		List<SesionEntrenamientoDTO> sesiones = stravaService.getSesiones();
 		
-		if(sesiones.contains(nuevaSesion)) {
-			return SesionEntrenamientoAssembler.getInstance().dtoToSesionEntrenamiento((SesionEntrenamientoDTO) sesiones);
-		}else {
-			throw new RemoteException("crearSesionEntrenamiento fails!");
+		if (this.servidorEstado.containsKey(token)) {	
+			if(sesiones.contains(nuevaSesion)) {
+				return SesionEntrenamientoAssembler.getInstance().dtoToSesionEntrenamiento((SesionEntrenamientoDTO) sesiones);
+			}else {
+				throw new RemoteException("crearSesionEntrenamiento fails!");
+			}
+		} else {
+			throw new RemoteException("Necesita iniciar sesion antes");
 		}
+			
 	}
 	
 	/*List<Category> categories = bidService.getCategories();
