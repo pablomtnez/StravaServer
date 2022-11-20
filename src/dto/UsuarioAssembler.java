@@ -21,7 +21,7 @@ public class UsuarioAssembler {
 		
 		dto.setNombre(null);
 		dto.setEmail(null);
-		dto.setContrasena(null);
+//		dto.setContrasena(null);
 		dto.setFechaNac(null);
 		dto.setPeso(0);
 		dto.setAltura(0);

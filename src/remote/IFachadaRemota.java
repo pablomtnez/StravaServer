@@ -6,14 +6,19 @@ import java.util.List;
 
 import clases.Reto;
 import clases.SesionEntrenamiento;
+import clases.UsuarioLocal;
 //import clases.Reto;
 import dto.RetoDTO;
 import dto.SesionEntrenamientoDTO;
+import dto.UsuarioDTO;
+import dto.UsuarioLocalDTO;
 
 public interface IFachadaRemota extends Remote{
 	/*ns si tienen que ser long*/
-	public long registro(String email, String contrasena, String nombre, String fechaNac, float peso, float altura, float fcm, float fcr)throws RemoteException;
+	//public long registro(String email, String contrasena, String nombre, String fechaNac, float peso, float altura, float fcm, float fcr)throws RemoteException;
 	//Pensar si pasar un Usuario DTO
+	public long registro(UsuarioLocalDTO usuario)throws RemoteException;	
+	//De momento se queda como UsuarioDTO pero habrá que cambiarlo a UsuarioLocalDTO
 	
 	public long login(String email, String contrasena) throws RemoteException;
 	

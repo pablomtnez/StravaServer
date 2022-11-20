@@ -13,10 +13,13 @@ import clases.Reto;
 import clases.SesionEntrenamiento;
 //import clases.SesionEntrenamiento;
 import clases.Usuario;
+import clases.UsuarioLocal;
 import dto.RetoAssembler;
 import dto.RetoDTO;
 import dto.SesionEntrenamientoAssembler;
 import dto.SesionEntrenamientoDTO;
+import dto.UsuarioDTO;
+import dto.UsuarioLocalDTO;
 import services.LogInAppService;
 import services.RegisterAppService;
 import services.StravaAppService;
@@ -31,7 +34,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	private static final long serialVersionUID = 1L;
 
 	//de este hashmap no estoy segura
-	private Map<Long, Usuario> registroEstado = new HashMap<>();
+	private Map<Long, UsuarioDTO> registroEstado = new HashMap<>();
 	private Map<Long, Usuario> servidorEstado = new HashMap<>();
 	//mapa.containsKey(long), si esta bien lo meto y sino error(excepcion)
 	
@@ -42,11 +45,12 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	
 	
 	@Override
-	public long registro(String email, String contrasena, String nombre, String fechaNac, float peso, float altura, float fcm, float fcr) throws RemoteException {
-		System.out.println(" * FachadaRemota registro(): " + nombre+ " / " + email+ " / " + contrasena + " / " + fechaNac + " / " + peso + " / " + altura + " / " + fcm + " / " + fcr );
+	public long registro(UsuarioLocalDTO usuario) throws RemoteException {
 		
-		Usuario usuario = registerService.register(email, contrasena, nombre, fechaNac, peso, altura, fcm, fcr);
+		System.out.println(" * FachadaRemota registro(): " + usuario.getNombre()+ " / " + usuario.getEmail()+ " / " + usuario.getContrasena() + " / " + usuario.getFechaNac() + " / " + usuario.getPeso() + " / " + usuario.getAltura() + " / " + usuario.getFcm() + " / " + usuario.getFcr() );
 		
+		usuario = registerService.register(usuario.getEmail(), usuario.getContrasena(), usuario.getNombre(), usuario.getFechaNac(), usuario.getPeso(), usuario.getAltura(), usuario.getFcm(), usuario.getFcr());
+
 		if(usuario != null) {
 			if(!this.registroEstado.values().contains(usuario)) {
 				Long token = Calendar.getInstance().getTimeInMillis();

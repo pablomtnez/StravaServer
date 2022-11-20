@@ -8,7 +8,6 @@ public class UsuarioDTO  implements Serializable{
 	
 	private String nombre;
 	private String email;
-	private String contrasena;
 	private String fechaNac;
 	private float peso;
 	private float altura;
@@ -27,12 +26,6 @@ public class UsuarioDTO  implements Serializable{
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getContrasena() {
-		return contrasena;
-	}
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
 	}
 	
 	public String getFechaNac() {
