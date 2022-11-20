@@ -30,6 +30,20 @@ public class RetoAssembler {
 		return dto;
 	}
 	
+	public Reto dtoToReto(RetoDTO dto) {
+		Reto reto = new Reto();
+		
+		reto.setNombre(dto.getNombre());
+		reto.setsFechaIni(dto.getFechaIni());
+		reto.setsFechaFin(dto.getFechaFin());
+		reto.setDistancia(dto.getDistancia());
+		reto.setTiempoObjetivo(dto.getTiempoObjetivo());
+		reto.setDeporte(dto.getDeporte());
+		reto.setEstado(dto.getEstado());
+		
+		return reto;
+	}
+	
 	public List<RetoDTO> retoToDTO(List<Reto> retos) {
 		List<RetoDTO> dtos = new ArrayList<>();
 		

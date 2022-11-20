@@ -1,23 +1,26 @@
 package services;
 
-import java.rmi.RemoteException;
+//import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
+//import java.util.Calendar;
 import java.util.List;
 
 import clases.Deporte;
-import clases.Reto;
-import clases.SesionEntrenamiento;
+//import clases.Reto;
+//import clases.SesionEntrenamiento;
 import clases.Usuario;
 import clases.UsuarioLocal;
+import dto.RetoDTO;
+import dto.SesionEntrenamientoDTO;
 
 //MIRAR DATES DE LAS CLASES
 
 public class StravaAppService {
 	
-	private List<SesionEntrenamiento> sesiones = new ArrayList<>();
-	private List<Reto> retos = new ArrayList<>();
-	List<Reto> retosActivos = new ArrayList<>();
+	private List<SesionEntrenamientoDTO> sesiones = new ArrayList<>();
+	private List<RetoDTO> retos = new ArrayList<>();
+	//private List<RetoDTO> retosDTO = new ArrayList<>();
+	List<RetoDTO> retosActivos = new ArrayList<>();
 	
 	public StravaAppService() {
 		
@@ -70,7 +73,7 @@ public class StravaAppService {
 		
 		//Creacion Sesiones Entrenamiento
 		
-		SesionEntrenamiento sesion0 = new SesionEntrenamiento();
+		SesionEntrenamientoDTO sesion0 = new SesionEntrenamientoDTO();
 		sesion0.setUsuario(usuario0);
 		sesion0.setTitulo("Ruta por el campo");
 		sesion0.setDeporte(Deporte.CICLISMO);
@@ -79,7 +82,7 @@ public class StravaAppService {
 		//sesion0.setHoraIni(0);
 		sesion0.setDuracion(180);
 		
-		SesionEntrenamiento sesion1 = new SesionEntrenamiento();
+		SesionEntrenamientoDTO sesion1 = new SesionEntrenamientoDTO();
 		sesion1.setUsuario(usuario1);
 		sesion1.setTitulo("Ruta por la Ria de Bilbao");
 		sesion1.setDeporte(Deporte.RUNNING);
@@ -93,23 +96,23 @@ public class StravaAppService {
 		
 		//Creacion Retos
 		
-		Reto reto0 = new Reto();
-		reto0.setUsuario(usuario0);
-		reto0.setSesionEntrenamiento(sesion0);
+		RetoDTO reto0 = new RetoDTO();
+		//reto0.setUsuario(usuario0);
+		//reto0.setSesionEntrenamiento(sesion0);
 		reto0.setNombre("Gran Fondo");
-		//reto0.setFechaIni(null);
-		//reto0.setFechaFin(null);
+		reto0.setFechaIni("13-02-2022");
+		reto0.setFechaFin("21-03-2022");
 		reto0.setDistancia(300);
 		reto0.setTiempoObjetivo(90);
 		reto0.setDeporte(Deporte.CICLISMO);
 		reto0.setEstado(false);
 		
-		Reto reto1 = new Reto();
-		reto1.setUsuario(usuario1);
-		reto1.setSesionEntrenamiento(sesion1);
+		RetoDTO reto1 = new RetoDTO();
+		//reto1.setUsuario(usuario1);
+		//reto1.setSesionEntrenamiento(sesion1);
 		reto1.setNombre("Carrera (resistencia)");
-		//reto1.setFechaIni(null);
-		//reto1.setFechaFin(null);
+		reto1.setFechaIni("31-05-2022");
+		reto1.setFechaFin("15-06-2022");
 		reto1.setDistancia(2);
 		reto1.setTiempoObjetivo(60);
 		reto1.setDeporte(Deporte.RUNNING);
@@ -121,17 +124,17 @@ public class StravaAppService {
 		
 	}
 
-	public List<SesionEntrenamiento> getSesiones() {
+	public List<SesionEntrenamientoDTO> getSesiones() {
 		return sesiones;
 	}
 
-	public List<Reto> getRetos() {
+	public List<RetoDTO> getRetos() {
 		return retos;
 	}
 		
 	public void crearManualSesionEntre(Usuario usuario, String titulo, Deporte deporte,float distancia, String fechaYHora, float duracion) {
 		
-		SesionEntrenamiento sesion = new SesionEntrenamiento();
+		SesionEntrenamientoDTO sesion = new SesionEntrenamientoDTO();
 		sesion.setUsuario(usuario);
 		sesion.setTitulo(titulo);
 		sesion.setDeporte(deporte);
@@ -143,7 +146,7 @@ public class StravaAppService {
 		
 	}
 	//Guardar reto
-	public boolean crearReto( Reto reto) {
+	public boolean crearReto( RetoDTO reto) {
 			if(!retos.contains(reto)) {
 				this.retos.add(reto);
 				return true;
@@ -154,11 +157,11 @@ public class StravaAppService {
 		
 	}
 	
-	public List<Reto> obtenerRetosActivos() {
+	public List<RetoDTO> obtenerRetosActivos() {
 		
 		for (int i = 0; i< retos.size(); i++) {
 			
-			Reto r = retos.get(i);
+			RetoDTO r = retos.get(i);
 			
 			if(r.getEstado()==true) {
 				retosActivos.add(r);	
@@ -175,7 +178,7 @@ public class StravaAppService {
 	*/
 	
 	public boolean aceptarReto(Usuario usuario, String nombre) {
-		Reto r =null;
+		RetoDTO r =null;
 		for (int i = 0; i<retos.size(); i++) {
 			r = retos.get(i);
 		}

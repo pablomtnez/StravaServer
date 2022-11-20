@@ -31,6 +31,19 @@ private static SesionEntrenamientoAssembler instance;
 		return dto;
 	}
 	
+	public SesionEntrenamiento dtoToSesionEntrenamiento(SesionEntrenamientoDTO dto) {
+		
+		SesionEntrenamiento sesion = new SesionEntrenamiento();
+		
+		sesion.setUsuario(dto.getUsuario());
+		sesion.setTitulo(dto.getTitulo());
+		sesion.setDistancia(dto.getDistancia());
+		sesion.setsFechaYHoraIni(dto.getsFechaYHoraIni());
+		sesion.setDuracion(dto.getDuracion());
+		
+		return sesion;
+	}
+	
 	public List<SesionEntrenamientoDTO> sesionEntrenamientoToDTO(List<SesionEntrenamiento> sesiones) {
 		List<SesionEntrenamientoDTO> dtos = new ArrayList<>();
 		

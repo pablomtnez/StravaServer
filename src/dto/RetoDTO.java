@@ -14,6 +14,7 @@ public class RetoDTO implements Serializable{
 	private float tiempoObjetivo;
 	private Deporte deporte;
 	private boolean estado;
+	private int codigo;
 	
 	public String getNombre() {
 		return nombre;
@@ -57,4 +58,11 @@ public class RetoDTO implements Serializable{
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+	
 }

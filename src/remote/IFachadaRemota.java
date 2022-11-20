@@ -6,11 +6,12 @@ import java.util.List;
 
 import clases.Reto;
 import clases.SesionEntrenamiento;
-import clases.UsuarioLocal;
+//import clases.SesionEntrenamiento;
+//import clases.UsuarioLocal;
 //import clases.Reto;
 import dto.RetoDTO;
 import dto.SesionEntrenamientoDTO;
-import dto.UsuarioDTO;
+//import dto.UsuarioDTO;
 import dto.UsuarioLocalDTO;
 
 public interface IFachadaRemota extends Remote{
@@ -37,9 +38,9 @@ public interface IFachadaRemota extends Remote{
 	
 	//Devuelve el reto
 	//public Reto crearReto(String nombre, String sfechaIni, String sfechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) throws RemoteException;
-	public RetoDTO crearReto(long token, RetoDTO nuevoReto) throws RemoteException;
+	public Reto crearReto(long token, RetoDTO nuevoReto) throws RemoteException;
 	
 	//Devuelve la sesión de entrenamiento
 	//public SesionEntrenamiento crearSesionEntrenamiento(String titulo, String deporte, float distancia, String sFechaYHoraIni, float duracion) throws RemoteException;
-	public SesionEntrenamientoDTO crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion) throws RemoteException;
+	public SesionEntrenamiento crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion) throws RemoteException;
 }

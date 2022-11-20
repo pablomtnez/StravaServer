@@ -100,11 +100,11 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	public List<SesionEntrenamientoDTO> getSesiones() throws RemoteException {
 		System.out.println(" * FachadaRemota getSesiones()");
 		
-		List<SesionEntrenamiento> sesiones = stravaService.getSesiones();
+		List<SesionEntrenamientoDTO> sesiones = stravaService.getSesiones();
 		
 		if (sesiones != null) {
 			//Convert domain object to DTO
-			return SesionEntrenamientoAssembler.getInstance().sesionEntrenamientoToDTO(sesiones);
+			return (List<SesionEntrenamientoDTO>)SesionEntrenamientoAssembler.getInstance().dtoToSesionEntrenamiento((SesionEntrenamientoDTO)sesiones);
 		} else {
 			throw new RemoteException("getSesiones() fails!");
 		}
@@ -114,11 +114,11 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	public List<RetoDTO> getRetos() throws RemoteException {
 		System.out.println(" * FachadaRemota getRetoss()");
 		
-		List<Reto> retos = stravaService.getRetos();
+		List<RetoDTO> retos = stravaService.getRetos();
 		
 		if (retos != null) {
 			//Convert domain object to DTO
-			return RetoAssembler.getInstance().retoToDTO(retos);
+			return (List<RetoDTO>) RetoAssembler.getInstance().dtoToReto((RetoDTO) retos);
 		} else {
 			throw new RemoteException("getRetos() fails!");
 		}
@@ -128,10 +128,10 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	public List<RetoDTO> obtenerRetosActivos() throws RemoteException {
 		System.out.println(" * FachadaRemota Obtener Retos Activos");
 		
-		List<Reto>retosActivos = stravaService.getRetos();
+		List<RetoDTO>retosActivos = stravaService.getRetos();
 		
 		if(retosActivos != null) {
-			return RetoAssembler.getInstance().retoToDTO(retosActivos);
+			return (List<RetoDTO>) RetoAssembler.getInstance().dtoToReto((RetoDTO) retosActivos);
 		}else {
 			throw new RemoteException("obtenerRetosActivos ha fallado");
 		}
@@ -152,20 +152,30 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	}
 
 	@Override
-	public RetoDTO crearReto(long token, RetoDTO nuevoReto) throws RemoteException {
+	public Reto crearReto(long token, RetoDTO nuevoReto) throws RemoteException {
 		System.out.println(" * FachadaRemota Crear Reto");
+	
+		List<RetoDTO> retos = stravaService.getRetos();
 		
-		List<Reto> retos = stravaService.getRetos();
-		
-		if (retos != null) {
+		if (retos.contains(nuevoReto)) {
 			//Convertimos Reto a RetoDTO
-			return (RetoDTO) RetoAssembler.getInstance().retoToDTO(retos);
+				return RetoAssembler.getInstance().dtoToReto((RetoDTO) retos);
 		} else {
-			throw new RemoteException("getRetos() fails!");
+				throw new RemoteException("crearReto fails!");
+			}
+		//Llamamos al Assembler para pasar de RetoDTO a Reto		
+	}
+
+	@Override
+	public SesionEntrenamiento crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion) throws RemoteException {
+		
+		List<SesionEntrenamientoDTO> sesiones = stravaService.getSesiones();
+		
+		if(sesiones.contains(nuevaSesion)) {
+			return SesionEntrenamientoAssembler.getInstance().dtoToSesionEntrenamiento((SesionEntrenamientoDTO) sesiones);
+		}else {
+			throw new RemoteException("crearSesionEntrenamiento fails!");
 		}
-		//Llamamos al Assembler para pasar de RetoDTO a Reto
-		
-		
 	}
 	
 	/*List<Category> categories = bidService.getCategories();
@@ -176,13 +186,6 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		} else {
 			throw new RemoteException("getCategories() fails!");
 		}*/
-
-	@Override
-	public SesionEntrenamientoDTO crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return nuevaSesion;
-	}
 
 	
 }
