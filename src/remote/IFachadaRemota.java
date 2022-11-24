@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import clases.Reto;
-import clases.SesionEntrenamiento;
+//import clases.SesionEntrenamiento;
 //import clases.SesionEntrenamiento;
 //import clases.UsuarioLocal;
 //import clases.Reto;
@@ -32,7 +32,7 @@ public interface IFachadaRemota extends Remote{
 	public List<RetoDTO> getRetos(long token) throws RemoteException;
 	//Filtrar - usar Token (vinculado a un usuario que previamente ha hecho registro)
 	
-	public List<RetoDTO> obtenerRetosActivos(long token) throws RemoteException;
+	public List<Reto> obtenerRetosActivos(long token) throws RemoteException;
 	
 	public boolean aceptarReto(long token, RetoDTO retoDto) throws RemoteException;
 	

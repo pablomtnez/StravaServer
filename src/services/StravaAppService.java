@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import clases.Deporte;
-import clases.Reto;
+//import clases.Reto;
 //import clases.Reto;
 //import clases.SesionEntrenamiento;
 import clases.Usuario;
@@ -19,7 +19,7 @@ import dto.SesionEntrenamientoDTO;
 public class StravaAppService {
 	
 	private List<SesionEntrenamientoDTO> sesiones = new ArrayList<>();
-	private List<Reto> retos = new ArrayList<>();
+	private List<RetoDTO> retos = new ArrayList<>();
 	//private List<RetoDTO> retosDTO = new ArrayList<>();
 	List<RetoDTO> retosActivos = new ArrayList<>();
 	
@@ -97,23 +97,23 @@ public class StravaAppService {
 		
 		//Creacion Retos
 		
-		Reto reto0 = new Reto();
+		RetoDTO reto0 = new RetoDTO();
 		//reto0.setUsuario(usuario0);
 		//reto0.setSesionEntrenamiento(sesion0);
 		reto0.setNombre("Gran Fondo");
-		reto0.setsFechaIni("13-02-2022");
-		reto0.setsFechaFin("21-03-2022");
+		reto0.setFechaIni("13-02-2022");
+		reto0.setFechaFin("21-03-2022");
 		reto0.setDistancia(300);
 		reto0.setTiempoObjetivo(90);
 		reto0.setDeporte(Deporte.CICLISMO);
 		reto0.setEstado(false);
 		
-		Reto reto1 = new Reto();
+		RetoDTO reto1 = new RetoDTO();
 		//reto1.setUsuario(usuario1);
 		//reto1.setSesionEntrenamiento(sesion1);
 		reto1.setNombre("Carrera (resistencia)");
-		reto1.setsFechaIni("31-05-2022");
-		reto1.setsFechaFin("15-06-2022");
+		reto1.setFechaIni("31-05-2022");
+		reto1.setFechaFin("15-06-2022");
 		reto1.setDistancia(2);
 		reto1.setTiempoObjetivo(60);
 		reto1.setDeporte(Deporte.RUNNING);
@@ -162,7 +162,7 @@ public class StravaAppService {
 		}
 	}
 	//Guardar reto
-	public boolean crearReto( Reto reto) {
+	public boolean crearReto( RetoDTO reto) {
 			if(!retos.contains(reto)) {
 				this.retos.add(reto);
 				return true;
@@ -175,14 +175,14 @@ public class StravaAppService {
 	
 	public List<RetoDTO> obtenerRetosActivos() {
 		
-		for (int i = 0; i< retos.size(); i++) {
+		for(RetoDTO reto : retos ) {
 			
-			RetoDTO r = retosActivos.get(i);
-			
-			if(r.getEstado()==true) {
-				retosActivos.add(r);	
+			if(reto.getEstado() == true) {
+				
+				retosActivos.add(reto);
 			}
 		}
+		
 		return retosActivos;
 		
 	}

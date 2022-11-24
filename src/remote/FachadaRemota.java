@@ -2,6 +2,7 @@ package remote;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Calendar;
 //import java.util.Date;
 import java.util.HashMap;
@@ -37,6 +38,8 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	private Map<Long, UsuarioLocalDTO> registroEstado = new HashMap<>();
 	private Map<Long, Usuario> servidorEstado = new HashMap<>();
 	//mapa.containsKey(long), si esta bien lo meto y sino error(excepcion)
+	
+	List<Reto> retosActivos = new ArrayList<>();
 	
 	private LogInAppService logInService = new LogInAppService();
 	//private LogOutAppService logOutService = new LogOutAppService();
@@ -133,11 +136,13 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		}
 	}
 
+	/*
 	@Override//esta ns si está bien
 	public List<RetoDTO> obtenerRetosActivos(long token) throws RemoteException {
 		System.out.println(" * FachadaRemota Obtener Retos Activos");
 		
 		List<RetoDTO>retosActivos = stravaService.getRetos();
+		
 		if (this.servidorEstado.containsKey(token)) {
 			if(retosActivos != null) {
 				return (List<RetoDTO>) RetoAssembler.getInstance().dtoToReto((RetoDTO) retosActivos);
@@ -146,6 +151,33 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 			}
 		}else {
 			throw new RemoteException("Necesita iniciar sesion antes");
+		}
+	}
+	*/
+	
+	@Override
+	public List<Reto> obtenerRetosActivos(long token) throws RemoteException {
+		System.out.println("* FachadaRemota Obtener Retos Activos");
+		
+		if (this.servidorEstado.containsKey(token)) {
+		
+			List<RetoDTO> retosActivosDTO = stravaService.obtenerRetosActivos();
+		
+			for(RetoDTO retoDTO : retosActivosDTO) {
+			
+				RetoAssembler assembler = new RetoAssembler();
+			
+				Reto reto = assembler.dtoToReto(retoDTO);
+				
+				retosActivos.add(reto);
+			}
+			
+		return retosActivos;	
+			
+			
+		}else {
+		
+			throw new RemoteException("El usuario tiene que haber iniciado sesion");
 		}
 	}
 
