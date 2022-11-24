@@ -8,7 +8,7 @@ import clases.Reto;
 public class RetoAssembler {
 	private static RetoAssembler instance;
 	
-	private RetoAssembler() {}
+	public RetoAssembler() {}
 	
 	public static RetoAssembler getInstance() {
 		if (instance == null) {
@@ -17,16 +17,16 @@ public class RetoAssembler {
 		return instance;
 	}
 	
-	public RetoDTO retoToDTO(Reto reto) {
+	public RetoDTO retoToDTO(Reto nuevoReto) {
 		RetoDTO dto = new RetoDTO();
 		
-		dto.setNombre(reto.getNombre());
-		dto.setFechaIni(reto.getsFechaIni());
-		dto.setFechaFin(reto.getsFechaFin());
-		dto.setDistancia(reto.getDistancia());
-		dto.setTiempoObjetivo(reto.getTiempoObjetivo());
-		dto.setDeporte(reto.getDeporte());
-		dto.setEstado(reto.getEstado());
+		dto.setNombre(nuevoReto.getNombre());
+		dto.setFechaIni(nuevoReto.getsFechaIni());
+		dto.setFechaFin(nuevoReto.getsFechaFin());
+		dto.setDistancia(nuevoReto.getDistancia());
+		dto.setTiempoObjetivo(nuevoReto.getTiempoObjetivo());
+		dto.setDeporte(nuevoReto.getDeporte());
+		dto.setEstado(nuevoReto.getEstado());
 		return dto;
 	}
 	

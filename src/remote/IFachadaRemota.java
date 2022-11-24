@@ -18,7 +18,7 @@ public interface IFachadaRemota extends Remote{
 	/*ns si tienen que ser long*/
 	//public long registro(String email, String contrasena, String nombre, String fechaNac, float peso, float altura, float fcm, float fcr)throws RemoteException;
 	//Pensar si pasar un Usuario DTO
-	public long registro(UsuarioLocalDTO usuario)throws RemoteException;	
+	public long registro(UsuarioLocalDTO usuario) throws RemoteException;	
 	//De momento se queda como UsuarioDTO pero habrá que cambiarlo a UsuarioLocalDTO
 	
 //	public long login(String email, String contrasena) throws RemoteException;
@@ -34,13 +34,13 @@ public interface IFachadaRemota extends Remote{
 	
 	public List<RetoDTO> obtenerRetosActivos(long token) throws RemoteException;
 	
-	public boolean aceptarReto(long token, String nombre) throws RemoteException;
+	public boolean aceptarReto(long token, RetoDTO retoDto) throws RemoteException;
 	
 	//Devuelve el reto
 	//public Reto crearReto(String nombre, String sfechaIni, String sfechaFin, float distancia, float tiempoObjetivo, String deporte, boolean estado) throws RemoteException;
-	public Reto crearReto(long token, RetoDTO nuevoReto) throws RemoteException;
+	public boolean crearReto(long token, RetoDTO nuevoReto) throws RemoteException;
 	
 	//Devuelve la sesión de entrenamiento
 	//public SesionEntrenamiento crearSesionEntrenamiento(String titulo, String deporte, float distancia, String sFechaYHoraIni, float duracion) throws RemoteException;
-	public SesionEntrenamiento crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion) throws RemoteException;
+	public boolean crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion) throws RemoteException;
 }

@@ -26,7 +26,7 @@ import services.StravaAppService;
 
 public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota{
 	
-	protected FachadaRemota() throws RemoteException {
+	public FachadaRemota() throws RemoteException {
 		super();
 
 	}
@@ -150,10 +150,13 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	}
 
 	@Override //ns como hacerla
-	public boolean aceptarReto(long token, String nombre) throws RemoteException {
-		System.out.println(" * FachadaRemota aceptarReto " + nombre);
+	public boolean aceptarReto(long token, RetoDTO retoDto) throws RemoteException {
+		System.out.println(" * FachadaRemota aceptarReto " + retoDto);
 		if (this.servidorEstado.containsKey(token)) {
-			if(stravaService.aceptarReto(this.servidorEstado.get(token), nombre)) {
+			RetoAssembler ra = new RetoAssembler();
+			//Reto reto = ra.dtoToReto(retoDto);
+			
+			if(stravaService.aceptarReto(this.servidorEstado.get(token), retoDto)) {
 				return true;
 			}else {
 				throw new RemoteException("El reto no ha podido ser aceptado");
@@ -164,15 +167,20 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	}
 
 	@Override
-	public Reto crearReto(long token, RetoDTO nuevoReto) throws RemoteException {
+	public boolean crearReto(long token, RetoDTO nuevoReto) throws RemoteException {
 		System.out.println(" * FachadaRemota Crear Reto");
 	
 		List<RetoDTO> retos = stravaService.getRetos();
 		
+		
+		
 		if (this.servidorEstado.containsKey(token)) {
+			RetoAssembler assembler = new RetoAssembler();
+			Reto reto = assembler.dtoToReto(nuevoReto);
+			
 			if (retos.contains(nuevoReto)) {
 				//Convertimos Reto a RetoDTO
-					return RetoAssembler.getInstance().dtoToReto((RetoDTO) retos);
+		//			return RetoAssembler.getInstance().retoToDTO((Reto) retos);
 			} else {
 					throw new RemoteException("crearReto fails!");
 			}
@@ -180,22 +188,29 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 			throw new RemoteException("Necesita iniciar sesion antes");
 		}
 		//Llamamos al Assembler para pasar de RetoDTO a Reto		
+		return false;
 	}
 
 	@Override
-	public SesionEntrenamiento crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion) throws RemoteException {
+	public boolean crearSesionEntrenamiento(long token, SesionEntrenamientoDTO nuevaSesion) throws RemoteException {
 		
 		List<SesionEntrenamientoDTO> sesiones = stravaService.getSesiones();
 		
 		if (this.servidorEstado.containsKey(token)) {	
-			if(sesiones.contains(nuevaSesion)) {
-				return SesionEntrenamientoAssembler.getInstance().dtoToSesionEntrenamiento((SesionEntrenamientoDTO) sesiones);
-			}else {
-				throw new RemoteException("crearSesionEntrenamiento fails!");
-			}
-		} else {
-			throw new RemoteException("Necesita iniciar sesion antes");
+			SesionEntrenamientoAssembler sea = new SesionEntrenamientoAssembler();
+			SesionEntrenamiento sesEntre = sea.dtoToSesionEntrenamiento(nuevaSesion);
+			
+		
 		}
+//			if(sesiones.contains(nuevaSesion)) {
+//				return SesionEntrenamientoAssembler.getInstance().sesionEntrenamientoToDTO((SesionEntrenamiento) sesiones);
+//			}else {
+//				throw new RemoteException("crearSesionEntrenamiento fails!");
+//			}
+//		} else {
+//			throw new RemoteException("Necesita iniciar sesion antes");
+//		}
+		return false;
 			
 	}
 	

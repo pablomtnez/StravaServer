@@ -2,6 +2,8 @@ package dto;
 
 import java.io.Serializable;
 
+import clases.UsuarioTipo;
+
 public class UsuarioDTO  implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -13,6 +15,7 @@ public class UsuarioDTO  implements Serializable{
 	private float altura;
 	private float fcm;
 	private float fcr;
+	private UsuarioTipo UsuarioTipo;
 	
 	public String getNombre() {
 		return nombre;
@@ -57,6 +60,12 @@ public class UsuarioDTO  implements Serializable{
 	}
 	public void setFcr(float fcr) {
 		this.fcr = fcr;
+	}
+	public UsuarioTipo getUsuarioTipo() {
+		return UsuarioTipo;
+	}
+	public void setUsuarioTipo(UsuarioTipo usuarioTipo) {
+		UsuarioTipo = usuarioTipo;
 	}
 
 }

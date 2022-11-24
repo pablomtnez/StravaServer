@@ -9,7 +9,7 @@ public class SesionEntrenamientoAssembler {
 	
 private static SesionEntrenamientoAssembler instance;
 	
-	private SesionEntrenamientoAssembler() { }
+	public SesionEntrenamientoAssembler() { }
 	
 	public static SesionEntrenamientoAssembler getInstance() {
 		if (instance ==  null) {

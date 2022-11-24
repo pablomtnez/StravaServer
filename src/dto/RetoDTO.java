@@ -6,6 +6,12 @@ import clases.Deporte;
 
 public class RetoDTO implements Serializable{
 
+	@Override
+	public String toString() {
+		return "RetoDTO [nombre=" + nombre + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", distancia="
+				+ distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte + ", estado=" + estado
+				+ ", codigo=" + codigo + "]";
+	}
 	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String fechaIni;

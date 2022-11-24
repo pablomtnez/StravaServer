@@ -1,6 +1,7 @@
 package dto;
 
 import clases.Usuario;
+import clases.UsuarioTipo;
 
 public class UsuarioAssembler {
 	
@@ -27,6 +28,7 @@ public class UsuarioAssembler {
 		dto.setAltura(0);
 		dto.setFcm(0);
 		dto.setFcr(0);
+		dto.setUsuarioTipo(null);
 		
 		return dto;
 	}

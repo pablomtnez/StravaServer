@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import clases.Deporte;
+import clases.Reto;
 //import clases.Reto;
 //import clases.SesionEntrenamiento;
 import clases.Usuario;
@@ -18,7 +19,7 @@ import dto.SesionEntrenamientoDTO;
 public class StravaAppService {
 	
 	private List<SesionEntrenamientoDTO> sesiones = new ArrayList<>();
-	private List<RetoDTO> retos = new ArrayList<>();
+	private List<Reto> retos = new ArrayList<>();
 	//private List<RetoDTO> retosDTO = new ArrayList<>();
 	List<RetoDTO> retosActivos = new ArrayList<>();
 	
@@ -96,30 +97,30 @@ public class StravaAppService {
 		
 		//Creacion Retos
 		
-		RetoDTO reto0 = new RetoDTO();
+		Reto reto0 = new Reto();
 		//reto0.setUsuario(usuario0);
 		//reto0.setSesionEntrenamiento(sesion0);
 		reto0.setNombre("Gran Fondo");
-		reto0.setFechaIni("13-02-2022");
-		reto0.setFechaFin("21-03-2022");
+		reto0.setsFechaIni("13-02-2022");
+		reto0.setsFechaFin("21-03-2022");
 		reto0.setDistancia(300);
 		reto0.setTiempoObjetivo(90);
 		reto0.setDeporte(Deporte.CICLISMO);
 		reto0.setEstado(false);
 		
-		RetoDTO reto1 = new RetoDTO();
+		Reto reto1 = new Reto();
 		//reto1.setUsuario(usuario1);
 		//reto1.setSesionEntrenamiento(sesion1);
 		reto1.setNombre("Carrera (resistencia)");
-		reto1.setFechaIni("31-05-2022");
-		reto1.setFechaFin("15-06-2022");
+		reto1.setsFechaIni("31-05-2022");
+		reto1.setsFechaFin("15-06-2022");
 		reto1.setDistancia(2);
 		reto1.setTiempoObjetivo(60);
 		reto1.setDeporte(Deporte.RUNNING);
 		reto1.setEstado(false);
 		
-		this.retos.add(reto0);
-		this.retos.add(reto1);
+		retos.add(reto0);
+		retos.add(reto1);
 		
 		
 	}
@@ -129,24 +130,39 @@ public class StravaAppService {
 	}
 
 	public List<RetoDTO> getRetos() {
-		return retos;
+		for (int i=0;i<retos.size();i++) {
+		      
+		 System.out.println(retos.get(i));
+		}
+		return null;	//Hay que quitarlo
 	}
 		
-	public void crearManualSesionEntre(Usuario usuario, String titulo, Deporte deporte,float distancia, String fechaYHora, float duracion) {
+//	public void crearManualSesionEntre(Usuario usuario, String titulo, Deporte deporte,float distancia, String fechaYHora, float duracion) {
+//		
+//		SesionEntrenamientoDTO sesion = new SesionEntrenamientoDTO();
+//		sesion.setUsuario(usuario);
+//		sesion.setTitulo(titulo);
+//		sesion.setDeporte(deporte);
+//		sesion.setDistancia(distancia);
+//		sesion.setsFechaYHoraIni(fechaYHora);
+//		sesion.setDuracion(duracion);
+//		
+//		sesiones.add(sesion);
+//		
+//	}
+	
+	
+	public boolean crearManualSesionEntre(long token, SesionEntrenamientoDTO sesEntre) {
 		
-		SesionEntrenamientoDTO sesion = new SesionEntrenamientoDTO();
-		sesion.setUsuario(usuario);
-		sesion.setTitulo(titulo);
-		sesion.setDeporte(deporte);
-		sesion.setDistancia(distancia);
-		sesion.setsFechaYHoraIni(fechaYHora);
-		sesion.setDuracion(duracion);
-		
-		sesiones.add(sesion);
-		
+		if(!sesiones.contains(sesEntre)) {
+			this.sesiones.add(sesEntre);
+			return true;
+		}else {
+			return false;
+		}
 	}
 	//Guardar reto
-	public boolean crearReto( RetoDTO reto) {
+	public boolean crearReto( Reto reto) {
 			if(!retos.contains(reto)) {
 				this.retos.add(reto);
 				return true;
@@ -161,7 +177,7 @@ public class StravaAppService {
 		
 		for (int i = 0; i< retos.size(); i++) {
 			
-			RetoDTO r = retos.get(i);
+			RetoDTO r = retosActivos.get(i);
 			
 			if(r.getEstado()==true) {
 				retosActivos.add(r);	
@@ -177,16 +193,18 @@ public class StravaAppService {
 	}
 	*/
 	
-	public boolean aceptarReto(Usuario usuario, String nombre) {
-		RetoDTO r =null;
-		for (int i = 0; i<retos.size(); i++) {
-			r = retos.get(i);
+	public boolean aceptarReto(Usuario usuario, RetoDTO reto) {
+		List<RetoDTO> retos = getRetos();
+		for (RetoDTO r : retos) {
+			for (int i = 0; i<retos.size(); i++) {
+				reto = retos.get(i);
+			}
+			if (reto.getNombre() == r.getNombre()) {
+				reto.setEstado(true);
+				return true;
+			} 
 		}
-		if (r.getNombre() == nombre) {
-			r.setEstado(true);
-			return true;
-		}else {
-			return false;
-		}
+		return true;
+		
 	}
 }
