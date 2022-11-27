@@ -1,5 +1,7 @@
 package clases;
 
+import dto.DeporteDTO;
+
 public class Reto {
 	
 	private Usuario usuario;
@@ -11,7 +13,7 @@ public class Reto {
 	private String sfechaFin;
 	private float distancia;
 	private float tiempoObjetivo;
-	private Deporte deporte;	//Añadimos así el enum?
+	private DeporteDTO deporte;	//Añadimos así el enum?
 	private boolean estado;
 	private int codigo;	//Aplicarlo en todas las clases necesarias
 	
@@ -62,10 +64,10 @@ public class Reto {
 	}
 	
 	//Así el enum de deporte?
-	public Deporte getDeporte() {
+	public DeporteDTO getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(Deporte deporte) {
+	public void setDeporte(DeporteDTO deporte) {
 		this.deporte = deporte;
 	}
 	public boolean getEstado() {
@@ -85,11 +87,11 @@ public class Reto {
 	public String toString() {
 		StringBuffer result = new StringBuffer();
 		
-		result.append("Usuario: ");
-		result.append(this.usuario);
-		result.append("Sesion entrenamiento: ");
-		result.append(this.sesionEntrenamiento);
-		result.append(", Nombre: ");
+//		result.append("Usuario: ");
+//		result.append(this.usuario);
+//		result.append("Sesion entrenamiento: ");
+//		result.append(this.sesionEntrenamiento);
+		result.append("Nombre: ");
 		result.append(this.nombre);
 		result.append(", Fecha inicio: ");
 		result.append(this.sfechaIni);
@@ -101,7 +103,7 @@ public class Reto {
 		result.append(this.tiempoObjetivo);
 		result.append(", Deporte: ");
 		result.append(this.deporte);
-		result.append("Estado: ");
+		result.append(", Estado: ");
 		result.append(this.estado);
 		
 		return result.toString();

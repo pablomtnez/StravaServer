@@ -11,6 +11,7 @@ import clases.Deporte;
 //import clases.SesionEntrenamiento;
 import clases.Usuario;
 import clases.UsuarioLocal;
+import dto.DeporteDTO;
 import dto.RetoDTO;
 import dto.SesionEntrenamientoDTO;
 
@@ -77,7 +78,7 @@ public class StravaAppService {
 		SesionEntrenamientoDTO sesion0 = new SesionEntrenamientoDTO();
 		sesion0.setUsuario(usuario0);
 		sesion0.setTitulo("Ruta por el campo");
-		sesion0.setDeporte(Deporte.CICLISMO);
+		sesion0.setDeporte(DeporteDTO.CICLISMO);
 		sesion0.setDistancia(50);
 		//sesion0.setFechaIni(null);
 		//sesion0.setHoraIni(0);
@@ -86,7 +87,7 @@ public class StravaAppService {
 		SesionEntrenamientoDTO sesion1 = new SesionEntrenamientoDTO();
 		sesion1.setUsuario(usuario1);
 		sesion1.setTitulo("Ruta por la Ria de Bilbao");
-		sesion1.setDeporte(Deporte.RUNNING);
+		sesion1.setDeporte(DeporteDTO.RUNNING);
 		sesion1.setDistancia(5);
 		//sesion0.setFechaIni(null);
 		//sesion0.setHoraIni(0);
@@ -105,7 +106,7 @@ public class StravaAppService {
 		reto0.setFechaFin("21-03-2022");
 		reto0.setDistancia(300);
 		reto0.setTiempoObjetivo(90);
-		reto0.setDeporte(Deporte.CICLISMO);
+		reto0.setDeporte(DeporteDTO.CICLISMO);
 		reto0.setEstado(false);
 		
 		RetoDTO reto1 = new RetoDTO();
@@ -116,7 +117,7 @@ public class StravaAppService {
 		reto1.setFechaFin("15-06-2022");
 		reto1.setDistancia(2);
 		reto1.setTiempoObjetivo(60);
-		reto1.setDeporte(Deporte.RUNNING);
+		reto1.setDeporte(DeporteDTO.RUNNING);
 		reto1.setEstado(false);
 		
 		retos.add(reto0);
