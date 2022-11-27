@@ -11,10 +11,10 @@ public class UsuarioDTO  implements Serializable{
 	private String nombre;
 	private String email;
 	private String fechaNac;
-	private float peso;
-	private float altura;
-	private float fcm;
-	private float fcr;
+	private double peso;
+	private double altura;
+	private double fcm;
+	private double fcr;
 	private UsuarioTipo UsuarioTipo;
 	
 	public String getNombre() {
@@ -37,28 +37,28 @@ public class UsuarioDTO  implements Serializable{
 	public void setFechaNac(String fechaNac) {
 		this.fechaNac = fechaNac;
 	}
-	public float getPeso() {
+	public double getPeso() {
 		return peso;
 	}
-	public void setPeso(float peso) {
+	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-	public float getAltura() {
+	public double getAltura() {
 		return altura;
 	}
-	public void setAltura(float altura) {
+	public void setAltura(double altura) {
 		this.altura = altura;
 	}
-	public float getFcm() {
+	public double getFcm() {
 		return fcm;
 	}
-	public void setFcm(float fcm) {
+	public void setFcm(double fcm) {
 		this.fcm = fcm;
 	}
-	public float getFcr() {
+	public double getFcr() {
 		return fcr;
 	}
-	public void setFcr(float fcr) {
+	public void setFcr(double fcr) {
 		this.fcr = fcr;
 	}
 	public UsuarioTipo getUsuarioTipo() {
@@ -67,5 +67,12 @@ public class UsuarioDTO  implements Serializable{
 	public void setUsuarioTipo(UsuarioTipo usuarioTipo) {
 		UsuarioTipo = usuarioTipo;
 	}
+	@Override
+	public String toString() {
+		return "UsuarioDTO [nombre=" + nombre + ", email=" + email + ", fechaNac=" + fechaNac + ", peso=" + peso
+				+ ", altura=" + altura + ", fcm=" + fcm + ", fcr=" + fcr + ", UsuarioTipo=" + UsuarioTipo + "]";
+	}
+	
+	
 
 }

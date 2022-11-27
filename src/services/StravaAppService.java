@@ -1,28 +1,19 @@
 package services;
 
-//import java.rmi.RemoteException;
 import java.util.ArrayList;
-//import java.util.Calendar;
 import java.util.List;
-
 import clases.Deporte;
-//import clases.Reto;
-//import clases.Reto;
-//import clases.SesionEntrenamiento;
+import clases.Reto;
+import clases.SesionEntrenamiento;
 import clases.Usuario;
 import clases.UsuarioLocal;
-import dto.DeporteDTO;
-import dto.RetoDTO;
-import dto.SesionEntrenamientoDTO;
-
-//MIRAR DATES DE LAS CLASES
+import clases.UsuarioTipo;
 
 public class StravaAppService {
 	
-	private List<SesionEntrenamientoDTO> sesiones = new ArrayList<>();
-	private List<RetoDTO> retos = new ArrayList<>();
-	//private List<RetoDTO> retosDTO = new ArrayList<>();
-	List<RetoDTO> retosActivos = new ArrayList<>();
+	private List<SesionEntrenamiento> sesiones = new ArrayList<>();
+	private List<Reto> retos = new ArrayList<>();
+	private List<Reto> retosActivos = new ArrayList<>();
 	
 	public StravaAppService() {
 		
@@ -31,33 +22,14 @@ public class StravaAppService {
 	
 	private void initilizeData() {
 		
-		//Creacion Usuarios
+		//Creación usuarios locales
 		
-/*		Usuario usuario0 = new Usuario();
-		usuario0.setNombre("Juan");
-		usuario0.setEmail("juan@gmail.com");
-		usuario0.setContrasena("1234");
-		usuario0.setsFechaNac("15-04-2002");
-		usuario0.setPeso(78);
-		usuario0.setAltura(167);
-		usuario0.setFcm(190);
-		usuario0.setFcr(100);
-		
-		Usuario usuario1 = new Usuario();
-		usuario1.setNombre("Laura");
-		usuario1.setEmail("laura@gmail.com");
-		usuario1.setContrasena("5678");
-		usuario1.setsFechaNac("03-12-1998");
-		usuario1.setPeso(60);
-		usuario1.setAltura(155);
-		usuario1.setFcm(169);
-		usuario1.setFcr(96);
-*/		
 		UsuarioLocal usuario0 = new UsuarioLocal();
-		usuario0.setNombre("Laura");
-		usuario0.setEmail("laura@gmail.com");
-		usuario0.setContrasena("5678");
-		usuario0.setFechaNac("03-12-1998");
+		usuario0.setNombre("Jose");
+		usuario0.setUsuarioTipo(UsuarioTipo.LOCAL);
+		usuario0.setEmail("Jose@gmail.com");
+		usuario0.setContrasena("1234");
+		usuario0.setFechaNac("15-08-2000");
 		usuario0.setPeso(60);
 		usuario0.setAltura(155);
 		usuario0.setFcm(169);
@@ -65,6 +37,7 @@ public class StravaAppService {
 		
 		UsuarioLocal usuario1 = new UsuarioLocal();
 		usuario1.setNombre("Laura");
+		usuario1.setUsuarioTipo(UsuarioTipo.LOCAL);
 		usuario1.setEmail("laura@gmail.com");
 		usuario1.setContrasena("5678");
 		usuario1.setFechaNac("03-12-1998");
@@ -75,49 +48,50 @@ public class StravaAppService {
 		
 		//Creacion Sesiones Entrenamiento
 		
-		SesionEntrenamientoDTO sesion0 = new SesionEntrenamientoDTO();
+		SesionEntrenamiento sesion0 = new SesionEntrenamiento();
 		sesion0.setUsuario(usuario0);
 		sesion0.setTitulo("Ruta por el campo");
-		sesion0.setDeporte(DeporteDTO.CICLISMO);
+		sesion0.setDeporte(Deporte.CICLISMO);
 		sesion0.setDistancia(50);
-		//sesion0.setFechaIni(null);
-		//sesion0.setHoraIni(0);
+		sesion0.setsFechaYHoraIni("11/02/2022 17:43");
 		sesion0.setDuracion(180);
+		sesion0.setCodigo(01);
 		
-		SesionEntrenamientoDTO sesion1 = new SesionEntrenamientoDTO();
+		SesionEntrenamiento sesion1 = new SesionEntrenamiento();
 		sesion1.setUsuario(usuario1);
 		sesion1.setTitulo("Ruta por la Ria de Bilbao");
-		sesion1.setDeporte(DeporteDTO.RUNNING);
+		sesion1.setDeporte(Deporte.RUNNING);
 		sesion1.setDistancia(5);
-		//sesion0.setFechaIni(null);
-		//sesion0.setHoraIni(0);
+		sesion1.setsFechaYHoraIni("25/11/2022 10:34");
 		sesion1.setDuracion(200);
+		sesion1.setCodigo(02);
 		
 		this.sesiones.add(sesion0);
 		this.sesiones.add(sesion1);
 		
 		//Creacion Retos
 		
-		RetoDTO reto0 = new RetoDTO();
-		//reto0.setUsuario(usuario0);
-		//reto0.setSesionEntrenamiento(sesion0);
+		Reto reto0 = new Reto();
+		
+		reto0.setUsuario(usuario0);
+		reto0.setCodigo(0001);
 		reto0.setNombre("Gran Fondo");
-		reto0.setFechaIni("13-02-2022");
-		reto0.setFechaFin("21-03-2022");
+		reto0.setsFechaIni("13-02-2022");
+		reto0.setsFechaFin("21-03-2022");
 		reto0.setDistancia(300);
 		reto0.setTiempoObjetivo(90);
-		reto0.setDeporte(DeporteDTO.CICLISMO);
+		reto0.setDeporte(Deporte.CICLISMO);
 		reto0.setEstado(false);
 		
-		RetoDTO reto1 = new RetoDTO();
-		//reto1.setUsuario(usuario1);
-		//reto1.setSesionEntrenamiento(sesion1);
+		Reto reto1 = new Reto();
+		reto1.setUsuario(usuario1);
+		reto1.setCodigo(0002);
 		reto1.setNombre("Carrera (resistencia)");
-		reto1.setFechaIni("31-05-2022");
-		reto1.setFechaFin("15-06-2022");
+		reto1.setsFechaIni("31-05-2022");
+		reto1.setsFechaFin("15-06-2022");
 		reto1.setDistancia(2);
 		reto1.setTiempoObjetivo(60);
-		reto1.setDeporte(DeporteDTO.RUNNING);
+		reto1.setDeporte(Deporte.RUNNING);
 		reto1.setEstado(false);
 		
 		retos.add(reto0);
@@ -125,58 +99,46 @@ public class StravaAppService {
 		
 		
 	}
+	
+	//GET SESIONES
 
-	public List<SesionEntrenamientoDTO> getSesiones() {
+	public List<SesionEntrenamiento> getSesiones() {
 		return sesiones;
 	}
 
-	public List<RetoDTO> getRetos() {
-		for (int i=0;i<retos.size();i++) {
-		      
-		 System.out.println(retos.get(i));
-		}
-		return null;	//Hay que quitarlo
+	//GET RETOS
+	
+	public List<Reto> getRetos() {
+		return retos;
 	}
-		
-//	public void crearManualSesionEntre(Usuario usuario, String titulo, Deporte deporte,float distancia, String fechaYHora, float duracion) {
-//		
-//		SesionEntrenamientoDTO sesion = new SesionEntrenamientoDTO();
-//		sesion.setUsuario(usuario);
-//		sesion.setTitulo(titulo);
-//		sesion.setDeporte(deporte);
-//		sesion.setDistancia(distancia);
-//		sesion.setsFechaYHoraIni(fechaYHora);
-//		sesion.setDuracion(duracion);
-//		
-//		sesiones.add(sesion);
-//		
-//	}
 	
-	
-	public boolean crearManualSesionEntre(long token, SesionEntrenamientoDTO sesEntre) {
-		
-		if(!sesiones.contains(sesEntre)) {
-			this.sesiones.add(sesEntre);
+	//CREAR SESIONES ENTRENAMIENTO
+			
+	public boolean crearManualSesionEntre(SesionEntrenamiento sesion) {
+		if(!sesiones.contains(sesion)) {
+			this.sesiones.add(sesion);
 			return true;
 		}else {
 			return false;
 		}
 	}
-	//Guardar reto
-	public boolean crearReto( RetoDTO reto) {
+	
+	//CREAR RETOS
+	
+	public boolean crearReto(Reto reto) {
 			if(!retos.contains(reto)) {
 				this.retos.add(reto);
 				return true;
 			}else {
 				return false;
 			}
-			//comprobar si el reto existe o no, si no existe lo almaceno y devuelvo true y sino false
-		
 	}
 	
-	public List<RetoDTO> obtenerRetosActivos() {
+	//Obtener Retos Activos
+	
+	public List<Reto> obtenerRetosActivos() {
 		
-		for(RetoDTO reto : retos ) {
+		for(Reto reto : retos ) {
 			
 			if(reto.getEstado() == true) {
 				
@@ -184,9 +146,10 @@ public class StravaAppService {
 			}
 		}
 		
-		return retosActivos;
-		
+		return retosActivos;	
 	}
+	
+	//CONSULTAR RETOS
 	
 	/*
 	public void consultarRetos() {
@@ -194,18 +157,13 @@ public class StravaAppService {
 	}
 	*/
 	
-	public boolean aceptarReto(Usuario usuario, RetoDTO reto) {
-		List<RetoDTO> retos = getRetos();
-		for (RetoDTO r : retos) {
-			for (int i = 0; i<retos.size(); i++) {
-				reto = retos.get(i);
-			}
+	public boolean aceptarReto(Usuario usuario, Reto reto) {
+		List<Reto> retos = getRetos();
+		for (Reto r : retos) {
 			if (reto.getNombre() == r.getNombre()) {
 				reto.setEstado(true);
-				return true;
 			} 
 		}
-		return true;
-		
+		return true;	
 	}
 }

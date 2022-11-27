@@ -2,9 +2,8 @@ package dto;
 
 import java.io.Serializable;
 
-import clases.UsuarioLocal;
 
-public class UsuarioLocalDTO extends UsuarioLocal implements Serializable {
+public class UsuarioLocalDTO extends UsuarioDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 		private String contrasena;
@@ -15,16 +14,17 @@ public class UsuarioLocalDTO extends UsuarioLocal implements Serializable {
 		public void setContrasena(String contrasena) {
 			this.contrasena = contrasena;
 		}
-		
+		public boolean comprobarContrasena(String contrasena) {
+			return this.contrasena.equals(contrasena);
+		}
 		@Override
 		public String toString() {
-			return "UsuarioLocalDTO [contrasena=" + contrasena + ", getContrasena()=" + getContrasena()
-					+ ", toString()=" + super.toString() + ", getNombre()=" + getNombre() + ", getEmail()=" + getEmail()
-					+ ", getsFechaNac()=" + getFechaNac() + ", getPeso()=" + getPeso() + ", getAltura()=" + getAltura()
-					+ ", getFcm()=" + getFcm() + ", getFcr()=" + getFcr() + ", getSfechaNac()=" + getSfechaNac()
-					+ ", getUsuarioTipo()=" + getUsuarioTipo() + ", getClass()=" + getClass() + ", hashCode()="
-					+ hashCode() + "]";
+			return "UsuarioLocalDTO [contrasena=" + contrasena + ", getNombre()=" + getNombre() + ", getEmail()="
+					+ getEmail() + ", getFechaNac()=" + getFechaNac() + ", getPeso()=" + getPeso() + ", getAltura()="
+					+ getAltura() + ", getFcm()=" + getFcm() + ", getFcr()=" + getFcr() + ", getUsuarioTipo()="
+					+ getUsuarioTipo() + "]";
 		}
+		
 		
 		
 }

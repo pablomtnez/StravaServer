@@ -23,9 +23,4 @@ public class UsuarioLocal extends Usuario {
 				+ ", toString()=" + super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ "]";
 	}
-
-	
-	
-	
-	
 }

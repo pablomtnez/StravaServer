@@ -1,13 +1,12 @@
 package dto;
 
 import clases.Usuario;
-import clases.UsuarioTipo;
 
 public class UsuarioAssembler {
 	
 	private static UsuarioAssembler instance;
 	
-	private UsuarioAssembler() { }
+	public UsuarioAssembler() { }
 	
 	public static UsuarioAssembler getInstance() {
 		if (instance ==  null) {
@@ -20,17 +19,33 @@ public class UsuarioAssembler {
 		
 		UsuarioDTO dto = new UsuarioDTO();
 		
-		dto.setNombre(null);
-		dto.setEmail(null);
-//		dto.setContrasena(null);
-		dto.setFechaNac(null);
-		dto.setPeso(0);
-		dto.setAltura(0);
-		dto.setFcm(0);
-		dto.setFcr(0);
-		dto.setUsuarioTipo(null);
+		dto.setNombre(usuario.getNombre());
+		dto.setEmail(usuario.getEmail());
+		dto.setFechaNac(usuario.getFechaNac());
+		dto.setPeso(usuario.getPeso());
+		dto.setAltura(usuario.getAltura());
+		dto.setFcm(usuario.getFcm());
+		dto.setFcr(usuario.getFcr());
+		dto.setUsuarioTipo(usuario.getUsuarioTipo());
 		
 		return dto;
+	}
+	
+	public Usuario dtoToUsuario(UsuarioDTO dto) {
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setNombre(dto.getNombre());
+		usuario.setEmail(dto.getEmail());
+		usuario.setFechaNac(dto.getFechaNac());
+		usuario.setPeso(dto.getPeso());
+		usuario.setAltura(dto.getAltura());
+		usuario.setFcm(dto.getFcm());
+		usuario.setFcr(dto.getFcr());
+		usuario.setUsuarioTipo(dto.getUsuarioTipo());
+		
+		return usuario;
+		
 	}
 	
 

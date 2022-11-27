@@ -1,21 +1,17 @@
 package clases;
 
-import dto.DeporteDTO;
-
 public class Reto {
 	
 	private Usuario usuario;
-	
-	private SesionEntrenamiento sesionEntrenamiento;
 	
 	private String nombre;
 	private String sfechaIni;
 	private String sfechaFin;
 	private float distancia;
 	private float tiempoObjetivo;
-	private DeporteDTO deporte;	//Añadimos así el enum?
+	private Deporte deporte;
 	private boolean estado;
-	private int codigo;	//Aplicarlo en todas las clases necesarias
+	private int codigo;	
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -23,14 +19,6 @@ public class Reto {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	public SesionEntrenamiento getSesionEntrenamiento() {
-		return sesionEntrenamiento;
-	}
-	public void setSesionEntrenamiento(SesionEntrenamiento sesionEntrenamiento) {
-		this.sesionEntrenamiento = sesionEntrenamiento;
-	}
-	
 	
 	public String getNombre() {
 		return nombre;
@@ -63,11 +51,10 @@ public class Reto {
 		this.tiempoObjetivo = tiempoObjetivo;
 	}
 	
-	//Así el enum de deporte?
-	public DeporteDTO getDeporte() {
+	public Deporte getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(DeporteDTO deporte) {
+	public void setDeporte(Deporte deporte) {
 		this.deporte = deporte;
 	}
 	public boolean getEstado() {
@@ -85,28 +72,9 @@ public class Reto {
 	
 	@Override
 	public String toString() {
-		StringBuffer result = new StringBuffer();
-		
-//		result.append("Usuario: ");
-//		result.append(this.usuario);
-//		result.append("Sesion entrenamiento: ");
-//		result.append(this.sesionEntrenamiento);
-		result.append("Nombre: ");
-		result.append(this.nombre);
-		result.append(", Fecha inicio: ");
-		result.append(this.sfechaIni);
-		result.append(", Fecha final: ");
-		result.append(this.sfechaFin);
-		result.append(", Distancia: ");
-		result.append(this.distancia);
-		result.append(", Tiempo Objetivo: ");
-		result.append(this.tiempoObjetivo);
-		result.append(", Deporte: ");
-		result.append(this.deporte);
-		result.append(", Estado: ");
-		result.append(this.estado);
-		
-		return result.toString();
+		return "Reto [usuario=" + usuario + ", nombre=" + nombre + ", sfechaIni=" + sfechaIni + ", sfechaFin="
+				+ sfechaFin + ", distancia=" + distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte
+				+ ", estado=" + estado + ", codigo=" + codigo + "]";
 	}
 	
 	

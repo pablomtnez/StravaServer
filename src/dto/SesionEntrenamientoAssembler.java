@@ -24,9 +24,11 @@ private static SesionEntrenamientoAssembler instance;
 		
 		dto.setUsuario(sesionEntrenamiento.getUsuario());
 		dto.setTitulo(sesionEntrenamiento.getTitulo());
+		dto.setDeporte(sesionEntrenamiento.getDeporte());
 		dto.setDistancia(sesionEntrenamiento.getDistancia());
 		dto.setsFechaYHoraIni(sesionEntrenamiento.getsFechaYHoraIni());
 		dto.setDuracion(sesionEntrenamiento.getDuracion());
+		dto.setCodigo(sesionEntrenamiento.getCodigo());
 		
 		return dto;
 	}
@@ -37,9 +39,11 @@ private static SesionEntrenamientoAssembler instance;
 		
 		sesion.setUsuario(dto.getUsuario());
 		sesion.setTitulo(dto.getTitulo());
+		sesion.setDeporte(dto.getDeporte());
 		sesion.setDistancia(dto.getDistancia());
 		sesion.setsFechaYHoraIni(dto.getsFechaYHoraIni());
 		sesion.setDuracion(dto.getDuracion());
+		sesion.setCodigo(dto.getCodigo());
 		
 		return sesion;
 	}

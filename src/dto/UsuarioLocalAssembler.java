@@ -1,13 +1,13 @@
 package dto;
 
-import clases.Usuario;
 import clases.UsuarioLocal;
+import clases.UsuarioTipo;
 
 public class UsuarioLocalAssembler {
 
 	private static UsuarioLocalAssembler instance;
 	
-	private UsuarioLocalAssembler() {
+	public UsuarioLocalAssembler() {
 		
 	}
 	
@@ -22,16 +22,33 @@ public class UsuarioLocalAssembler {
 		
 		UsuarioLocalDTO dto = new UsuarioLocalDTO();
 		
-		dto.setNombre(null);
-		dto.setEmail(null);
-//		dto.setContrasena(null);
-		dto.setFechaNac(null);
-		dto.setPeso(0);
-		dto.setAltura(0);
-		dto.setFcm(0);
-		dto.setFcr(0);
-		dto.setUsuarioTipo(null);
+		dto.setNombre(usuario.getNombre());
+		dto.setEmail(usuario.getEmail());
+		dto.setContrasena(usuario.getContrasena());
+		dto.setFechaNac(usuario.getFechaNac());
+		dto.setPeso(usuario.getPeso());
+		dto.setAltura(usuario.getAltura());
+		dto.setFcm(usuario.getFcm());
+		dto.setFcr(usuario.getFcr());
+		dto.setUsuarioTipo(UsuarioTipo.LOCAL);
 		
 		return dto;
+	}
+	
+	public UsuarioLocal dtoToUsuarioLocal (UsuarioLocalDTO dto) {
+		
+		UsuarioLocal usuario = new UsuarioLocal();
+		
+		usuario.setNombre(dto.getNombre());
+		usuario.setEmail(dto.getEmail());
+		usuario.setContrasena(dto.getContrasena());
+		usuario.setFechaNac(dto.getFechaNac());
+		usuario.setPeso(dto.getPeso());
+		usuario.setAltura(dto.getAltura());
+		usuario.setFcm(dto.getFcm());
+		usuario.setFcr(dto.getFcr());
+		usuario.setUsuarioTipo(UsuarioTipo.LOCAL);
+		
+		return usuario;
 	}
 }

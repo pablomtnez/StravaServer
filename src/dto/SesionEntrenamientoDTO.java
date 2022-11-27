@@ -12,10 +12,11 @@ public class SesionEntrenamientoDTO implements Serializable {
 	private Usuario usuario;
 	
 	private String titulo;
-	private DeporteDTO deporte;
+	private Deporte deporte;
 	private float distancia;
 	private String sFechaYHoraIni;
 	private float duracion;
+	private int codigo;
 	
 	
 	public Usuario getUsuario() {
@@ -26,22 +27,17 @@ public class SesionEntrenamientoDTO implements Serializable {
 	}
 	
 	
-	@Override
-	public String toString() {
-		return "SesionEntrenamientoDTO [titulo=" + titulo + ", deporte=" + deporte
-				+ ", distancia=" + distancia + ", sFechaYHoraIni=" + sFechaYHoraIni + ", duracion=" + duracion + "]";
-	}
 	public String getTitulo() {
 		return titulo;
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public DeporteDTO getDeporte() {
+	public Deporte getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(DeporteDTO deporteDTO) {
-		this.deporte = deporteDTO;
+	public void setDeporte(Deporte deporte) {
+		this.deporte = deporte;
 	}
 	public float getDistancia() {
 		return distancia;
@@ -61,5 +57,18 @@ public class SesionEntrenamientoDTO implements Serializable {
 	public void setDuracion(float duracion) {
 		this.duracion = duracion;
 	}
-
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+	@Override
+	public String toString() {
+		return "SesionEntrenamientoDTO [usuario=" + usuario + ", titulo=" + titulo + ", deporte=" + deporte
+				+ ", distancia=" + distancia + ", sFechaYHoraIni=" + sFechaYHoraIni + ", duracion=" + duracion
+				+ ", codigo=" + codigo + "]";
+	}
+	
+	
 }

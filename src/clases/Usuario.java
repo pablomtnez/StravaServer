@@ -1,20 +1,16 @@
 package clases;
 
-
-
 public class Usuario {
 	
 	private String nombre;
-	private String email;
-	//private String contrasena;
-	private String fechaNac; 
-	private float peso;
-	private float altura;
-	private float fcm;	//Frecuencia cardiaca máxima
-	private float fcr;	//Frecuencia cardiaca reposo
-	
-	//Cómo lo añadimos?
 	private UsuarioTipo UsuarioTipo;
+	private String email;
+	private String fechaNac; 
+	private double peso;
+	private double altura;
+	private double fcm;	//Frecuencia cardiaca máxima
+	private double fcr;	//Frecuencia cardiaca reposo
+	
 	
 	
 	public String getNombre() {
@@ -23,51 +19,40 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-//	public String getContrasena() {
-//		return contrasena;
-//	}
-//	public void setContrasena(String contrasena) {
-//		this.contrasena = contrasena;
-//	}
-//	public boolean comprobarContrasena(String contrasena) {
-//		return this.contrasena.equals(contrasena);
-//	}
 	public String getFechaNac() {
 		return fechaNac;
 	}
 	public void setFechaNac(String sfechaNac) {
 		this.fechaNac = sfechaNac;
 	}
-	
-	public float getPeso() {
+	public double getPeso() {
 		return peso;
 	}
-	public void setPeso(float peso) {
+	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-	public float getAltura() {
+	public double getAltura() {
 		return altura;
 	}
-	public void setAltura(float altura) {
+	public void setAltura(double altura) {
 		this.altura = altura;
 	}
-	public float getFcm() {
+	public double getFcm() {
 		return fcm;
 	}
-	public void setFcm(float fcm) {
+	public void setFcm(double fcm) {
 		this.fcm = fcm;
 	}
-	public float getFcr() {
+	public double getFcr() {
 		return fcr;
 	}
-	public void setFcr(float fcr) {
+	public void setFcr(double fcr) {
 		this.fcr = fcr;
 	}
 	public String getSfechaNac() {
@@ -80,8 +65,6 @@ public class Usuario {
 		UsuarioTipo = usuarioTipo;
 	}
 	
-	
-	
 	@Override
 	public String toString() {
 		StringBuffer result = new StringBuffer();
@@ -90,8 +73,6 @@ public class Usuario {
 		result.append(this.nombre);
 		result.append(", Email: ");
 		result.append(this.email);
-		//result.append(", Contrasena: ");
-		//Sresult.append(this.contrasena);
 		result.append(", Fecha Nacimiento: ");
 		result.append(this.fechaNac);
 		result.append(", Peso: ");

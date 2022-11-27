@@ -9,6 +9,7 @@ public class SesionEntrenamiento {
 	private float distancia;
 	private String sFechaYHoraIni;
 	private float duracion;
+	private int codigo;
 	
 	
 	public Usuario getUsuario() {
@@ -49,24 +50,17 @@ public class SesionEntrenamiento {
 	public void setDuracion(float duracion) {
 		this.duracion = duracion;
 	}
-	
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
 	@Override
 	public String toString() {
-		StringBuffer result = new StringBuffer();
-		
-		result.append("Usuario: ");
-		result.append(this.usuario);
-		result.append("Titulo: ");
-		result.append(this.titulo);
-		result.append(", Deporte: ");
-		result.append(this.deporte);
-		result.append(", Distancia: ");
-		result.append(this.distancia);
-		result.append(", Fecha y Hora de inicio: ");
-		result.append(this.sFechaYHoraIni);
-		result.append(", Duracion: ");
-		result.append(this.duracion);
-		
-		return result.toString();
+		return "SesionEntrenamiento [usuario=" + usuario + ", titulo=" + titulo + ", deporte=" + deporte
+				+ ", distancia=" + distancia + ", sFechaYHoraIni=" + sFechaYHoraIni + ", duracion=" + duracion
+				+ ", codigo=" + codigo + "]";
 	}
+	
 }
