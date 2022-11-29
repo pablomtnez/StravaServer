@@ -16,7 +16,7 @@ public class RetoDTO implements Serializable{
 	private String sfechaFin;
 	private float distancia;
 	private float tiempoObjetivo;
-	private Deporte deporte;
+	private DeporteDTO deporte;
 	private boolean estado;
 	private int codigo;
 	
@@ -60,10 +60,10 @@ public class RetoDTO implements Serializable{
 	public void setTiempoObjetivo(float tiempoObjetivo) {
 		this.tiempoObjetivo = tiempoObjetivo;
 	}
-	public Deporte getDeporte() {
+	public DeporteDTO getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(Deporte deporte) {
+	public void setDeporte(DeporteDTO deporte) {
 		this.deporte = deporte;
 	}
 	public boolean getEstado() {
@@ -83,7 +83,8 @@ public class RetoDTO implements Serializable{
 		return "RetoDTO [usuario=" + usuario + ", nombre=" + nombre + ", sfechaIni=" + sfechaIni + ", sfechaFin="
 				+ sfechaFin + ", distancia=" + distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte
 				+ ", estado=" + estado + ", codigo=" + codigo + "]";
-	}	
+	}
+	
 	
 	
 }

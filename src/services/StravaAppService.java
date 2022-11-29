@@ -8,6 +8,7 @@ import clases.SesionEntrenamiento;
 import clases.Usuario;
 import clases.UsuarioLocal;
 import clases.UsuarioTipo;
+import dto.DeporteDTO;
 
 public class StravaAppService {
 	
@@ -80,7 +81,7 @@ public class StravaAppService {
 		reto0.setsFechaFin("21-03-2022");
 		reto0.setDistancia(300);
 		reto0.setTiempoObjetivo(90);
-		reto0.setDeporte(Deporte.CICLISMO);
+		reto0.setDeporte(DeporteDTO.CICLISMO);
 		reto0.setEstado(false);
 		
 		Reto reto1 = new Reto();
@@ -91,7 +92,7 @@ public class StravaAppService {
 		reto1.setsFechaFin("15-06-2022");
 		reto1.setDistancia(2);
 		reto1.setTiempoObjetivo(60);
-		reto1.setDeporte(Deporte.RUNNING);
+		reto1.setDeporte(DeporteDTO.RUNNING);
 		reto1.setEstado(false);
 		
 		retos.add(reto0);

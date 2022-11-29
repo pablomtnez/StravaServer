@@ -1,5 +1,7 @@
 package clases;
 
+import dto.DeporteDTO;
+
 public class Reto {
 	
 	private Usuario usuario;
@@ -9,7 +11,7 @@ public class Reto {
 	private String sfechaFin;
 	private float distancia;
 	private float tiempoObjetivo;
-	private Deporte deporte;
+	private DeporteDTO deporte;
 	private boolean estado;
 	private int codigo;	
 	
@@ -51,10 +53,10 @@ public class Reto {
 		this.tiempoObjetivo = tiempoObjetivo;
 	}
 	
-	public Deporte getDeporte() {
+	public DeporteDTO getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(Deporte deporte) {
+	public void setDeporte(DeporteDTO deporte) {
 		this.deporte = deporte;
 	}
 	public boolean getEstado() {
