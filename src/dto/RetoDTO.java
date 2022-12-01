@@ -76,7 +76,7 @@ public class RetoDTO implements Serializable{
 		return codigo;
 	}
 	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+		this.codigo = codigo++;
 	}
 	@Override
 	public String toString() {
@@ -84,7 +84,18 @@ public class RetoDTO implements Serializable{
 				+ sfechaFin + ", distancia=" + distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte
 				+ ", estado=" + estado + ", codigo=" + codigo + "]";
 	}
-	
+	public RetoDTO() {
+		super();
+		this.usuario = usuario;
+		this.nombre = nombre;
+		this.sfechaIni = sfechaIni;
+		this.sfechaFin = sfechaFin;
+		this.distancia = distancia;
+		this.tiempoObjetivo = tiempoObjetivo;
+		this.deporte = deporte;
+		this.estado = estado;
+		this.codigo = codigo;
+	}
 	
 	
 }

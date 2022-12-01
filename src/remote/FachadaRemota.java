@@ -83,6 +83,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 			if(!this.servidorEstado.containsValue(usuarioLocal)) {
 				
 				token = Calendar.getInstance().getTimeInMillis();
+				System.out.println(token);
 				this.servidorEstado.put(token, usuarioLocal);
 				return token;
 			
