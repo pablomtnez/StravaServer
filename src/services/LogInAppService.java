@@ -13,7 +13,7 @@ import dto.UsuarioLocalDTO;
 import dto.UsuarioTipoDTO;
 
 public class LogInAppService {
-	
+
 	private List<Usuario> listaUsuarios = new ArrayList<>();
 	private List<UsuarioLocal> listaUsuariosLocales = new ArrayList<>();
 	public static LogInAppService instance;
@@ -96,7 +96,7 @@ public class LogInAppService {
 			usuarioDTO.setPeso(peso);
 			usuarioDTO.setFcm(fcm);
 			usuarioDTO.setFcr(fcr);
-			usuarioDTO.setUsuarioTipo(UsuarioTipo.LOCAL);
+			usuarioDTO.setUsuarioTipo(UsuarioTipoDTO.LOCAL);
 			
 			UsuarioLocalAssembler usuarioAssembler = new UsuarioLocalAssembler();
 			UsuarioLocal usuario = usuarioAssembler.dtoToUsuarioLocal(usuarioDTO);
@@ -161,7 +161,7 @@ public class LogInAppService {
 			usuarioDTO.setPeso(peso);
 			usuarioDTO.setFcm(fcm);
 			usuarioDTO.setFcr(fcr);
-			usuarioDTO.setUsuarioTipo(UsuarioTipo.GOOGLE);
+			usuarioDTO.setUsuarioTipo(UsuarioTipoDTO.GOOGLE);
 			
 			UsuarioAssembler usuarioAssembler = new UsuarioAssembler();
 			Usuario usuarioGoogle = usuarioAssembler.dtoToUsuario(usuarioDTO);
@@ -226,7 +226,7 @@ public class LogInAppService {
 			usuarioDTO.setPeso(peso);
 			usuarioDTO.setFcm(fcm);
 			usuarioDTO.setFcr(fcr);
-			usuarioDTO.setUsuarioTipo(UsuarioTipo.FACEBOOK);
+			usuarioDTO.setUsuarioTipo(UsuarioTipoDTO.FACEBOOK);
 			
 			UsuarioAssembler usuarioAssembler = new UsuarioAssembler();
 			Usuario usuarioFacebook = usuarioAssembler.dtoToUsuario(usuarioDTO);

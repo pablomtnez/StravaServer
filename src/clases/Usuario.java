@@ -1,7 +1,6 @@
 package clases;
 
 public class Usuario {
-	
 	private String nombre;
 	private UsuarioTipo UsuarioTipo;
 	private String email;
@@ -12,7 +11,33 @@ public class Usuario {
 	private double fcr;	//Frecuencia cardiaca reposo
 	
 	
+	public Usuario(String nombre, clases.UsuarioTipo usuarioTipo, String email, String fechaNac, double peso,
+			double altura, double fcm, double fcr) {
+		super();
+		this.nombre = nombre;
+		UsuarioTipo = usuarioTipo;
+		this.email = email;
+		this.fechaNac = fechaNac;
+		this.peso = peso;
+		this.altura = altura;
+		this.fcm = fcm;
+		this.fcr = fcr;
+	}
 	
+	
+	public Usuario() {
+		super();
+		this.nombre = "";
+		UsuarioTipo = null;
+		this.email = "";
+		this.fechaNac = "";
+		this.peso = 0;
+		this.altura = 0;
+		this.fcm = 0;
+		this.fcr = 0;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -87,5 +112,4 @@ public class Usuario {
 		result.append(this.UsuarioTipo);
 		return result.toString();
 	}
-	
 }

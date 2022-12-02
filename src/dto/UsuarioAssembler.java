@@ -1,10 +1,11 @@
 package dto;
 
 import clases.Usuario;
+import clases.UsuarioTipo;
 
 public class UsuarioAssembler {
 	
-	private static UsuarioAssembler instance;
+private static UsuarioAssembler instance;
 	
 	public UsuarioAssembler() { }
 	
@@ -26,7 +27,14 @@ public class UsuarioAssembler {
 		dto.setAltura(usuario.getAltura());
 		dto.setFcm(usuario.getFcm());
 		dto.setFcr(usuario.getFcr());
-		dto.setUsuarioTipo(usuario.getUsuarioTipo());
+		
+		if(usuario.getUsuarioTipo().equals(UsuarioTipo.LOCAL)) {
+			dto.setUsuarioTipo(UsuarioTipoDTO.LOCAL);
+		}else if(usuario.getUsuarioTipo().equals(UsuarioTipo.GOOGLE)) {
+			dto.setUsuarioTipo(UsuarioTipoDTO.GOOGLE);
+		}else if(usuario.getUsuarioTipo().equals(UsuarioTipo.FACEBOOK)) {
+			dto.setUsuarioTipo(UsuarioTipoDTO.FACEBOOK);
+		}
 		
 		return dto;
 	}
@@ -42,7 +50,14 @@ public class UsuarioAssembler {
 		usuario.setAltura(dto.getAltura());
 		usuario.setFcm(dto.getFcm());
 		usuario.setFcr(dto.getFcr());
-		usuario.setUsuarioTipo(dto.getUsuarioTipo());
+		
+		if(dto.getUsuarioTipo().equals(UsuarioTipoDTO.LOCAL)) {
+			usuario.setUsuarioTipo(UsuarioTipo.LOCAL);
+		}else if(dto.getUsuarioTipo().equals(UsuarioTipoDTO.GOOGLE)) {
+			usuario.setUsuarioTipo(UsuarioTipo.GOOGLE);
+		}else if(dto.getUsuarioTipo().equals(UsuarioTipoDTO.FACEBOOK)) {
+			usuario.setUsuarioTipo(UsuarioTipo.FACEBOOK);
+		}
 		
 		return usuario;
 		

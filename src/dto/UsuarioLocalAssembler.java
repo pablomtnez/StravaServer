@@ -30,7 +30,7 @@ public class UsuarioLocalAssembler {
 		dto.setAltura(usuario.getAltura());
 		dto.setFcm(usuario.getFcm());
 		dto.setFcr(usuario.getFcr());
-		dto.setUsuarioTipo(UsuarioTipo.LOCAL);
+		dto.setUsuarioTipo(UsuarioTipoDTO.LOCAL);
 		
 		return dto;
 	}

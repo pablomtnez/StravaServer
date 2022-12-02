@@ -3,6 +3,7 @@ package dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import clases.Deporte;
 import clases.SesionEntrenamiento;
 
 public class SesionEntrenamientoAssembler {
@@ -24,11 +25,16 @@ private static SesionEntrenamientoAssembler instance;
 		
 		dto.setUsuario(sesionEntrenamiento.getUsuario());
 		dto.setTitulo(sesionEntrenamiento.getTitulo());
-		dto.setDeporte(sesionEntrenamiento.getDeporte());
 		dto.setDistancia(sesionEntrenamiento.getDistancia());
 		dto.setsFechaYHoraIni(sesionEntrenamiento.getsFechaYHoraIni());
 		dto.setDuracion(sesionEntrenamiento.getDuracion());
 		dto.setCodigo(sesionEntrenamiento.getCodigo());
+		
+		if(sesionEntrenamiento.getDeporte().equals(Deporte.CICLISMO)) {
+			dto.setDeporte(DeporteDTO.CICLISMO);
+		}else if(sesionEntrenamiento.getDeporte().equals(Deporte.RUNNING)){	
+			dto.setDeporte(DeporteDTO.RUNNING);
+		}
 		
 		return dto;
 	}
@@ -39,11 +45,16 @@ private static SesionEntrenamientoAssembler instance;
 		
 		sesion.setUsuario(dto.getUsuario());
 		sesion.setTitulo(dto.getTitulo());
-		sesion.setDeporte(dto.getDeporte());
 		sesion.setDistancia(dto.getDistancia());
 		sesion.setsFechaYHoraIni(dto.getsFechaYHoraIni());
 		sesion.setDuracion(dto.getDuracion());
 		sesion.setCodigo(dto.getCodigo());
+		
+		if(dto.getDeporte().equals(DeporteDTO.CICLISMO)) {
+			sesion.setDeporte(Deporte.CICLISMO);
+		}else if(dto.getDeporte().equals(DeporteDTO.RUNNING)){	
+			sesion.setDeporte(Deporte.RUNNING);
+		}
 		
 		return sesion;
 	}
@@ -56,6 +67,16 @@ private static SesionEntrenamientoAssembler instance;
 		}
 		
 		return dtos;		
+	}
+	
+	public List<SesionEntrenamiento> dtoToSesionEntrenamiento(List<SesionEntrenamientoDTO> dtos) {
+		List<SesionEntrenamiento> sesiones = new ArrayList<>();
+		
+		for (SesionEntrenamientoDTO dto : dtos) {
+			sesiones.add(this.dtoToSesionEntrenamiento(dto));
+		}
+		
+		return sesiones;		
 	}
 	
 

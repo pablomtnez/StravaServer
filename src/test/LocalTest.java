@@ -2,14 +2,14 @@ package test;
 
 import java.util.List;
 
+import dto.DeporteDTO;
 import dto.RetoDTO;
 import dto.SesionEntrenamientoDTO;
 import dto.UsuarioTipoDTO;
 import remote.FachadaRemota;
 
 public class LocalTest {
-
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		
 		FachadaRemota fachada = null;
 		List<SesionEntrenamientoDTO> sesiones = null;
@@ -65,7 +65,7 @@ public class LocalTest {
 			
 			//Registro Google
 			String nombre1 = "Alejandro";
-			String email1 = "alejando@gmail.es";
+			String email5 = "alejando@gmail.es";
 			String fechaNac1 = "30/03/2001";
 			double peso1 = 70;
 			double altura1 = 1.80;
@@ -73,7 +73,7 @@ public class LocalTest {
 			double frm1 = 85;
 			UsuarioTipoDTO tipo1 = UsuarioTipoDTO.GOOGLE;
 			
-			fachada.registrarGoogle(nombre1, email1, fechaNac1, peso1, altura1, fcm1, frm1, tipo1);
+			fachada.registrarGoogle(nombre1, email5, fechaNac1, peso1, altura1, fcm1, frm1, tipo1);
 			
 			//Registrar Facebook
 			String nombre2 = "Maria";
@@ -88,37 +88,63 @@ public class LocalTest {
 			fachada.registrarFacebook(nombre2, email2, fechaNac2, peso2, altura2, fcm2, frm2, tipo2);
 			
 			//Login Local
-			String email3 = "alvaro@hotmail.es";
-			String contrasena2 = "aaaa";
+//			String email3 = "alvaro@hotmail.es";
+//			String contrasena2 = "aaaa";
+//			
+//			token = fachada.loginLocal(email, contrasena);
+//			System.out.println(token);
 			
-			token = fachada.loginLocal(email3, contrasena2);
+			//Login Google
+			
+			token = fachada.loginGoogle(email5);
 			System.out.println(token);
 			
 			//Crear SesionEntrenamiento
 			
-			fachada.crearSesionEntrenamiento(token, sesionEntrenamientoDTO);
+			SesionEntrenamientoDTO sesionNuevo = new SesionEntrenamientoDTO();
+			
+			sesionNuevo.setTitulo("Ruta por el monte");
+			sesionNuevo.setUsuario(nombre1);
+			sesionNuevo.setCodigo(1);
+			sesionNuevo.setDeporte(DeporteDTO.CICLISMO);
+			sesionNuevo.setDistancia(50);
+			sesionNuevo.setDuracion(40);
+			sesionNuevo.setsFechaYHoraIni("31-01-2002 18:56");
+			
+			
+			fachada.crearSesionEntrenamiento(token, sesionNuevo);
 			
 			//Crear Reto
-			fachada.crearReto(token, retoDTO);
+			RetoDTO retoNuevo = new RetoDTO();
+			
+			retoNuevo.setCodigo(2);
+			retoNuevo.setDeporte(DeporteDTO.CICLISMO);
+			retoNuevo.setDistancia(100);
+			retoNuevo.setEstado(true);
+			retoNuevo.setNombre("Vuelta ciclista");
+			retoNuevo.setSfechaFin("05-05-2005");
+			retoNuevo.setSfechaIni("01-01-2002");
+			retoNuevo.setTiempoObjetivo(30);
+			retoNuevo.setUsuario(nombre1);
+			
+			fachada.crearReto(token, retoNuevo);
 			
 			//Obtener Retos Activos
 			retosActivos = fachada.obtenerRetosActivos(token);
 			
 			//Aceptar Reto
-			fachada.aceptarReto(token, retoDTO);
+			//fachada.aceptarReto(token, retoDTO);
 			
 			//Logout
 			fachada.logout(token);
 			
 			//Comprobacion sesiones
 			sesiones = fachada.getSesiones();
-			sesionEntrenamientoDTO = sesiones.get(0);
-			System.out.println("\t- " + sesionEntrenamientoDTO);
+			System.out.println(sesiones);
 			
 			//Comprobacion sesiones
 			retos = fachada.getRetos();
-			retoDTO = retos.get(0);
-			System.out.println("\t- " + retoDTO);	
+			System.out.println(retos);	
 			
 		}catch (Exception e){
 			

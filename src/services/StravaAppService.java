@@ -8,10 +8,11 @@ import clases.SesionEntrenamiento;
 import clases.Usuario;
 import clases.UsuarioLocal;
 import clases.UsuarioTipo;
-import dto.DeporteDTO;
 
 public class StravaAppService {
 	
+
+	private List<UsuarioLocal> usuariosLocales = new ArrayList<>();
 	private List<SesionEntrenamiento> sesiones = new ArrayList<>();
 	private List<Reto> retos = new ArrayList<>();
 	private List<Reto> retosActivos = new ArrayList<>();
@@ -47,10 +48,13 @@ public class StravaAppService {
 		usuario1.setFcm(169);
 		usuario1.setFcr(96);
 		
+		usuariosLocales.add(usuario0);
+		usuariosLocales.add(usuario1);
+		
 		//Creacion Sesiones Entrenamiento
 		
 		SesionEntrenamiento sesion0 = new SesionEntrenamiento();
-		sesion0.setUsuario(usuario0);
+		sesion0.setUsuario(usuario0.getNombre());
 		sesion0.setTitulo("Ruta por el campo");
 		sesion0.setDeporte(Deporte.CICLISMO);
 		sesion0.setDistancia(50);
@@ -59,7 +63,7 @@ public class StravaAppService {
 		sesion0.setCodigo(01);
 		
 		SesionEntrenamiento sesion1 = new SesionEntrenamiento();
-		sesion1.setUsuario(usuario1);
+		sesion1.setUsuario(usuario1.getNombre());
 		sesion1.setTitulo("Ruta por la Ria de Bilbao");
 		sesion1.setDeporte(Deporte.RUNNING);
 		sesion1.setDistancia(5);
@@ -74,25 +78,25 @@ public class StravaAppService {
 		
 		Reto reto0 = new Reto();
 		
-		reto0.setUsuario(usuario0);
+		reto0.setUsuario(usuario0.getNombre());
 		reto0.setCodigo(0001);
 		reto0.setNombre("Gran Fondo");
-		reto0.setsFechaIni("13-02-2022");
-		reto0.setsFechaFin("21-03-2022");
+		reto0.setSfechaIni("13-02-2022");
+		reto0.setSfechaFin("21-03-2022");
 		reto0.setDistancia(300);
 		reto0.setTiempoObjetivo(90);
-		reto0.setDeporte(DeporteDTO.CICLISMO);
+		reto0.setDeporte(Deporte.CICLISMO);
 		reto0.setEstado(false);
 		
 		Reto reto1 = new Reto();
-		reto1.setUsuario(usuario1);
+		reto1.setUsuario(usuario1.getNombre());
 		reto1.setCodigo(0002);
 		reto1.setNombre("Carrera (resistencia)");
-		reto1.setsFechaIni("31-05-2022");
-		reto1.setsFechaFin("15-06-2022");
+		reto1.setSfechaIni("31-05-2022");
+		reto1.setSfechaFin("15-06-2022");
 		reto1.setDistancia(2);
 		reto1.setTiempoObjetivo(60);
-		reto1.setDeporte(DeporteDTO.RUNNING);
+		reto1.setDeporte(Deporte.RUNNING);
 		reto1.setEstado(false);
 		
 		retos.add(reto0);
@@ -150,21 +154,19 @@ public class StravaAppService {
 		return retosActivos;	
 	}
 	
-	//CONSULTAR RETOS
-	
-	/*
-	public void consultarRetos() {
-		
-	}
-	*/
+	//Aceptar Reto
 	
 	public boolean aceptarReto(Usuario usuario, Reto reto) {
 		List<Reto> retos = getRetos();
+		boolean resultado = false;
 		for (Reto r : retos) {
 			if (reto.getNombre() == r.getNombre()) {
 				reto.setEstado(true);
-			} 
+				resultado = true;
+			}else {
+				resultado = false;
+			}
 		}
-		return true;	
+		return resultado;
 	}
 }

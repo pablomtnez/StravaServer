@@ -85,6 +85,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 				token = Calendar.getInstance().getTimeInMillis();
 				System.out.println(token);
 				this.servidorEstado.put(token, usuarioLocal);
+				System.out.println(usuarioLocal);
 				return token;
 			
 			}else {
@@ -194,7 +195,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		if (this.servidorEstado.containsKey(token)) {
 			SesionEntrenamientoAssembler assembler = new SesionEntrenamientoAssembler();
 			SesionEntrenamiento sesion = assembler.dtoToSesionEntrenamiento(sesionDTO);
-			if (stravaService.crearManualSesionEntre(sesion)==true) {
+			if (!stravaService.crearManualSesionEntre(sesion)==false) {
 				sesiones.add(sesion);
 				return true;
 			}else {

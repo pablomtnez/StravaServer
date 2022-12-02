@@ -2,11 +2,9 @@ package dto;
 
 import java.io.Serializable;
 
-import clases.UsuarioTipo;
-
 public class UsuarioDTO  implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	private String nombre;
 	private String email;
@@ -15,7 +13,32 @@ public class UsuarioDTO  implements Serializable{
 	private double altura;
 	private double fcm;
 	private double fcr;
-	private UsuarioTipo UsuarioTipo;
+	private UsuarioTipoDTO UsuarioTipo;
+	
+	public UsuarioDTO(String nombre, String email, String fechaNac, double peso, double altura, double fcm, double fcr,
+			UsuarioTipoDTO usuarioTipo) {
+		super();
+		this.nombre = nombre;
+		this.email = email;
+		this.fechaNac = fechaNac;
+		this.peso = peso;
+		this.altura = altura;
+		this.fcm = fcm;
+		this.fcr = fcr;
+		UsuarioTipo = usuarioTipo;
+	}
+	
+	public UsuarioDTO() {
+		super();
+		this.nombre = "";
+		this.email = "";
+		this.fechaNac = "";
+		this.peso = 0;
+		this.altura = 0;
+		this.fcm = 0;
+		this.fcr = 0;
+		UsuarioTipo = null;
+	}
 	
 	public String getNombre() {
 		return nombre;
@@ -61,10 +84,10 @@ public class UsuarioDTO  implements Serializable{
 	public void setFcr(double fcr) {
 		this.fcr = fcr;
 	}
-	public UsuarioTipo getUsuarioTipo() {
+	public UsuarioTipoDTO getUsuarioTipo() {
 		return UsuarioTipo;
 	}
-	public void setUsuarioTipo(UsuarioTipo usuarioTipo) {
+	public void setUsuarioTipo(UsuarioTipoDTO usuarioTipo) {
 		UsuarioTipo = usuarioTipo;
 	}
 	@Override
@@ -72,7 +95,4 @@ public class UsuarioDTO  implements Serializable{
 		return "UsuarioDTO [nombre=" + nombre + ", email=" + email + ", fechaNac=" + fechaNac + ", peso=" + peso
 				+ ", altura=" + altura + ", fcm=" + fcm + ", fcr=" + fcr + ", UsuarioTipo=" + UsuarioTipo + "]";
 	}
-	
-	
-
 }

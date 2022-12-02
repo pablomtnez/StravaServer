@@ -3,6 +3,21 @@ package clases;
 public class UsuarioLocal extends Usuario {
 	private String contrasena;
 
+	public UsuarioLocal(String nombre, clases.UsuarioTipo usuarioTipo, String email, String fechaNac, double peso,
+			double altura, double fcm, double fcr, String contrasena) {
+		super(nombre, usuarioTipo, email, fechaNac, peso, altura, fcm, fcr);
+		this.contrasena = contrasena;
+	}
+	
+	
+
+	public UsuarioLocal() {
+		super();
+		this.contrasena = "";
+	}
+
+
+
 	public String getContrasena() {
 		return contrasena;
 	}
