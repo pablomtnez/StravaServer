@@ -1,44 +1,23 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import clases.UsuarioTipo;
 
 public class UsuarioDTO  implements Serializable{
 	
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	private String nombre;
 	private String email;
-	private String fechaNac;
+	private String contrasena;
+	private Date fechaNac; 
 	private double peso;
 	private double altura;
-	private double fcm;
-	private double fcr;
-	private UsuarioTipoDTO UsuarioTipo;
-	
-	public UsuarioDTO(String nombre, String email, String fechaNac, double peso, double altura, double fcm, double fcr,
-			UsuarioTipoDTO usuarioTipo) {
-		super();
-		this.nombre = nombre;
-		this.email = email;
-		this.fechaNac = fechaNac;
-		this.peso = peso;
-		this.altura = altura;
-		this.fcm = fcm;
-		this.fcr = fcr;
-		UsuarioTipo = usuarioTipo;
-	}
-	
-	public UsuarioDTO() {
-		super();
-		this.nombre = "";
-		this.email = "";
-		this.fechaNac = "";
-		this.peso = 0;
-		this.altura = 0;
-		this.fcm = 0;
-		this.fcr = 0;
-		UsuarioTipo = null;
-	}
+	private double fcm;	//Frecuencia cardiaca máxima
+	private double fcr;	//Frecuencia cardiaca reposo
+	private UsuarioTipo UsuarioTipo;
 	
 	public String getNombre() {
 		return nombre;
@@ -46,18 +25,22 @@ private static final long serialVersionUID = 1L;
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public String getFechaNac() {
+	public String getContrasena() {
+		return contrasena;
+	}
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+	public Date getFechaNac() {
 		return fechaNac;
 	}
-	public void setFechaNac(String fechaNac) {
+	public void setFechaNac(Date fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 	public double getPeso() {
@@ -84,15 +67,16 @@ private static final long serialVersionUID = 1L;
 	public void setFcr(double fcr) {
 		this.fcr = fcr;
 	}
-	public UsuarioTipoDTO getUsuarioTipo() {
+	public UsuarioTipo getUsuarioTipo() {
 		return UsuarioTipo;
 	}
-	public void setUsuarioTipo(UsuarioTipoDTO usuarioTipo) {
+	public void setUsuarioTipo(UsuarioTipo usuarioTipo) {
 		UsuarioTipo = usuarioTipo;
 	}
 	@Override
 	public String toString() {
-		return "UsuarioDTO [nombre=" + nombre + ", email=" + email + ", fechaNac=" + fechaNac + ", peso=" + peso
-				+ ", altura=" + altura + ", fcm=" + fcm + ", fcr=" + fcr + ", UsuarioTipo=" + UsuarioTipo + "]";
+		return "UsuarioDTO [nombre=" + nombre + ", email=" + email + ", contrasena=" + contrasena + ", fechaNac="
+				+ fechaNac + ", peso=" + peso + ", altura=" + altura + ", fcm=" + fcm + ", fcr=" + fcr
+				+ ", UsuarioTipo=" + UsuarioTipo + "]";
 	}
 }

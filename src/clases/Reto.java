@@ -1,54 +1,28 @@
 package clases;
 
-public class Reto {
-	
-	private String usuario;
+import java.io.Serializable;
+import java.util.Date;
+
+public class Reto implements Serializable{
 	
 	private String nombre;
-	private String sfechaIni;
-	private String sfechaFin;
-	private float distancia;
-	private float tiempoObjetivo;
+	private Date fechaIni;
+	private Date fechaFin;
+	private double distancia;
+	private double tiempoObjetivo;
 	private Deporte deporte;
-	private boolean estado;
-	private int codigo;	
 	
-	
-
-	public Reto(String usuario, String nombre, String sfechaIni, String sfechaFin, float distancia,
-			float tiempoObjetivo, Deporte deporte, boolean estado, int codigo) {
+	public Reto(String nombre, Date fechaIni, Date fechaFin, double distancia, double tiempoObjetivo, Deporte deporte) {
 		super();
-		this.usuario = usuario;
 		this.nombre = nombre;
-		this.sfechaIni = sfechaIni;
-		this.sfechaFin = sfechaFin;
+		this.fechaIni = fechaIni;
+		this.fechaFin = fechaFin;
 		this.distancia = distancia;
 		this.tiempoObjetivo = tiempoObjetivo;
 		this.deporte = deporte;
-		this.estado = estado;
-		this.codigo = codigo;
 	}
 	
 	public Reto() {
-		super();
-		this.usuario = "";
-		this.nombre = "";
-		this.sfechaIni = "";
-		this.sfechaFin = "";
-		this.distancia = 0;
-		this.tiempoObjetivo = 0;
-		this.deporte = null;
-		this.estado = false;
-		this.codigo = 0;
-	}
-	
-	
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
 	}
 
 	public String getNombre() {
@@ -59,35 +33,35 @@ public class Reto {
 		this.nombre = nombre;
 	}
 
-	public String getSfechaIni() {
-		return sfechaIni;
+	public Date getFechaIni() {
+		return fechaIni;
 	}
 
-	public void setSfechaIni(String sfechaIni) {
-		this.sfechaIni = sfechaIni;
+	public void setFechaIni(Date fechaIni) {
+		this.fechaIni = fechaIni;
 	}
 
-	public String getSfechaFin() {
-		return sfechaFin;
+	public Date getFechaFin() {
+		return fechaFin;
 	}
 
-	public void setSfechaFin(String sfechaFin) {
-		this.sfechaFin = sfechaFin;
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 
-	public float getDistancia() {
+	public double getDistancia() {
 		return distancia;
 	}
 
-	public void setDistancia(float distancia) {
+	public void setDistancia(double distancia) {
 		this.distancia = distancia;
 	}
 
-	public float getTiempoObjetivo() {
+	public double getTiempoObjetivo() {
 		return tiempoObjetivo;
 	}
 
-	public void setTiempoObjetivo(float tiempoObjetivo) {
+	public void setTiempoObjetivo(double tiempoObjetivo) {
 		this.tiempoObjetivo = tiempoObjetivo;
 	}
 
@@ -99,26 +73,9 @@ public class Reto {
 		this.deporte = deporte;
 	}
 
-	public boolean getEstado() {
-		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
 	@Override
 	public String toString() {
-		return "Reto [usuario=" + usuario + ", nombre=" + nombre + ", sfechaIni=" + sfechaIni + ", sfechaFin="
-				+ sfechaFin + ", distancia=" + distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte
-				+ ", estado=" + estado + ", codigo=" + codigo + "]";
+		return "Reto [nombre=" + nombre + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", distancia="
+				+ distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte + "]";
 	}
 }

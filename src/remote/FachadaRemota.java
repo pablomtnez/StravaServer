@@ -7,272 +7,230 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import clases.Reto;
 import clases.SesionEntrenamiento;
 import clases.Usuario;
 import clases.UsuarioLocal;
+import clases.UsuarioTipo;
 import dto.RetoAssembler;
 import dto.RetoDTO;
 import dto.SesionEntrenamientoAssembler;
 import dto.SesionEntrenamientoDTO;
-import dto.UsuarioTipoDTO;
-import services.LogInAppService;
+import dto.UsuarioDTO;
+import services.LoginAppService;
 import services.StravaAppService;
 
 public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota{
+
+	private static final long serialVersionUID = 1L;
+	
+	private Map<Long, Usuario> servidorEstado = new HashMap<>();
+	
+	private LoginAppService loginService = LoginAppService.getInstance();
+	private StravaAppService appService = StravaAppService.getInstance();
 	
 	public FachadaRemota() throws RemoteException {
 		super();
-
+		// TODO Auto-generated constructor stub
 	}
 
-	private static final long serialVersionUID = 1L;
-
-	private Map<Long, Usuario> servidorEstado = new HashMap<>();
-	
-	private Map<String, Usuario> registro = new HashMap<>();
-	
-	List<Reto> retosActivos = new ArrayList<>();
-	
-	private LogInAppService logInService = new LogInAppService();
-	private StravaAppService stravaService = new StravaAppService();
-	
-	
 	@Override
-	public boolean registrarLocal(String nombre, String email, String contrasena, String fechaNac, double peso, 
-			double altura, double fcm, double fcr, UsuarioTipoDTO usuarioTipo) throws RemoteException{
+	public synchronized void registarLocal(UsuarioDTO dto) throws RemoteException{
+		System.out.println(" * FachadaRemota registrarLocal(): " + dto.getEmail() + " / " + dto.getContrasena());
 		
-		if(logInService.registrarLocal(nombre, email, contrasena, fechaNac, peso, 
-				altura, fcm, fcr, usuarioTipo) == true) {
-			
-			return true;
-		}else {
-			return false;
+		UsuarioLocal uL = new UsuarioLocal();
+		
+		uL.setAltura(dto.getAltura());
+		uL.setContrasena(dto.getContrasena());
+		uL.setEmail(dto.getEmail());
+		uL.setFcm(dto.getFcm());
+		uL.setFcr(dto.getFcr());
+		uL.setFechaNac(dto.getFechaNac());
+		uL.setNombre(dto.getNombre());
+		uL.setPeso(dto.getPeso());
+		uL.setUsuarioTipo(UsuarioTipo.LOCAL);
+		
+		if(!loginService.registrarLocal(uL)) {
+			throw new RemoteException("User is already logged in!");
 		}
 	}
 	
 	@Override
-	public boolean registrarGoogle(String nombre, String email, String fechaNac, double peso, double altura, 
-			double fcm, double fcr, UsuarioTipoDTO usuarioTipo) throws RemoteException{
+	public synchronized long loginLocal(String email, String contrasena) throws RemoteException {
+		System.out.println(" * RemoteFacade loginLocal(): " + email + " / " + contrasena);
 		
-		if(logInService.registrarGoogle(nombre, email, fechaNac, peso, altura, fcm, fcr, usuarioTipo)==true) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	@Override
-	public boolean registrarFacebook(String nombre, String email, String fechaNac, double peso, double altura,
-			double fcm, double fcr, UsuarioTipoDTO usuarioTipo) throws RemoteException {
-		if(logInService.registrarFacebook(nombre, email, fechaNac, peso, altura, fcm, fcr, usuarioTipo)==true) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	
-	@Override
-	public synchronized long loginLocal(String email, String contrasena) throws RemoteException{
+		UsuarioLocal uL = loginService.loginLocal(email, contrasena);
 		
-		/*UsuarioLocal usuarioLocal = logInService.loginLocal(email, contrasena);
-		
-		//long token = -1;
-		
-		if(!(usuarioLocal.getEmail() == "" && usuarioLocal.getContrasena() == "")) {
-			
-			if(!this.servidorEstado.containsValue(usuarioLocal)) {
-				
+		if(uL != null) {
+			if(!this.servidorEstado.values().contains(uL)) {
 				long token = Calendar.getInstance().getTimeInMillis();
-				System.out.println(token);
-				this.servidorEstado.put(token, usuarioLocal);
-				System.out.println(usuarioLocal);
+				this.servidorEstado.put(token, uL);
 				return token;
-			
 			}else {
-				
-				throw new RemoteException("El usuario no está registrado");
-				
+				throw new RemoteException("User is already logged in!");
 			}
-			
 		}else {
-			
-			throw new RemoteException("El loginLocal ha fallado");
-		}*/
-		return 3;
-	}
-	
-	public long loginGoogle(String email) throws RemoteException{
-		
-		Usuario usuario = logInService.loginGoogle(email);
-		
-		Long token = (long) -1;
-		
-		if(!(usuario.getEmail() == "")) {
-			
-			if(!this.servidorEstado.containsValue(usuario)) {
-				
-				token = Calendar.getInstance().getTimeInMillis();
-				this.servidorEstado.put(token, usuario);
-				return token;
-			
-			}else {
-				
-				throw new RemoteException("El usuario no esta registrado");
-			}
-			
-		}else {
-			throw new RemoteException("El loginGoogle ha fallado");
+			throw new RemoteException("Login fails!");
 		}
+		
 	}
-	
-	public long loginFacebook(String email) throws RemoteException{
-		
-		Usuario usuario = logInService.loginFacebook(email);
-		
-		Long token = (long) -1;
-		
-		if(!(usuario.getEmail() == "")) {
-			
-			if(!this.servidorEstado.containsValue(usuario)) {
-				
-				token = Calendar.getInstance().getTimeInMillis();
-				this.servidorEstado.put(token, usuario);
-				return token;
-			
-			}else {
-				
-				throw new RemoteException("El usuario no esta registrado");
-			}
-			
-		}else {
-			throw new RemoteException("El loginFacebook ha fallado");
-		}
-	}
-	
+
 	@Override
-	public void logout(long token) throws RemoteException{
-		System.out.println(" * Fachada Remota logout(): " + token);
-		if(this.servidorEstado.containsKey(token)) {
+	public synchronized void registarFacebook(UsuarioDTO dto) throws RemoteException {
+		System.out.println(" * FachadaRemota registrarFacebook(): " + dto.getEmail() + "");
+		
+		Usuario u = new Usuario();
+		u.setAltura(dto.getAltura());
+		u.setEmail(dto.getEmail());
+		u.setFcm(dto.getFcm());
+		u.setFcr(dto.getFcr());
+		u.setFechaNac(dto.getFechaNac());
+		u.setNombre(dto.getNombre());
+		u.setPeso(dto.getPeso());
+		u.setUsuarioTipo(UsuarioTipo.FACEBOOK);
+		
+		if(!loginService.registrarFacebook(u)) {
+			throw new RemoteException("User is already logged in!");
+		}
+	}
+
+	@Override
+	public synchronized long loginFacebook(String email) throws RemoteException {
+		System.out.println(" * RemoteFacade loginFacebook(): " + email + "");
+		
+		Usuario u = loginService.loginFacebook(email);
+		
+		if(u != null) {
+			if(!this.servidorEstado.values().contains(u)) {
+				long token = Calendar.getInstance().getTimeInMillis();
+				this.servidorEstado.put(token, u);
+				return token;
+			}else {
+				throw new RemoteException("User is already logged in!");
+			}
+		}else {
+			throw new RemoteException("Login fails!");
+		}
+	}
+
+	@Override
+	public synchronized void registrarGoogle(UsuarioDTO dto) throws RemoteException {
+		System.out.println(" * FachadaRemota registrarGoogle(): " + dto.getEmail() + "");
+		
+		Usuario u = new Usuario();
+		u.setAltura(dto.getAltura());
+		u.setEmail(dto.getEmail());
+		u.setFcm(dto.getFcm());
+		u.setFcr(dto.getFcr());
+		u.setFechaNac(dto.getFechaNac());
+		u.setNombre(dto.getNombre());
+		u.setPeso(dto.getPeso());
+		u.setUsuarioTipo(UsuarioTipo.GOOGLE);
+		
+		if(!loginService.registrarGoogle(u)) {
+			throw new RemoteException("User is already logged in!");
+		}
+		
+	}
+
+
+	@Override
+	public synchronized long loginGoogle(String email) throws RemoteException {
+		System.out.println(" * RemoteFacade loginFacebook(): " + email + "");
+		
+		Usuario u = loginService.loginFacebook(email);
+		
+		if(u != null) {
+			if(!this.servidorEstado.values().contains(u)) {
+				long token = Calendar.getInstance().getTimeInMillis();
+				this.servidorEstado.put(token, u);
+				return token;
+			}else {
+				throw new RemoteException("User is already logged in!");
+			}
+		}else {
+			throw new RemoteException("Login fails!");
+		}
+	}
+
+	@Override
+	public synchronized void logout(long token) throws RemoteException {
+		System.out.println(" * RemoteFacade logout(): " + token);
+		if (this.servidorEstado.containsKey(token)) {
+			//Logout means remove the User from Server State
 			this.servidorEstado.remove(token);
-		}else {
-			throw new RemoteException("El usuario no habia iniciado sesion");
+		} else {
+			throw new RemoteException("User is not logged in!");
 		}
 	}
-		
+
 	@Override
-	public List<SesionEntrenamientoDTO> getSesiones() throws RemoteException {
-		
-		System.out.println(" * FachadaRemota getSesiones()");
-		
-		List<SesionEntrenamiento> sesiones = stravaService.getSesiones();
-		
-		if(sesiones != null) {
-			return SesionEntrenamientoAssembler.getInstance().sesionEntrenamientoToDTO(sesiones);
-		}else {
-			throw new RemoteException("getSesiones() ha fallado");
+	public List<RetoDTO> getReto(long token) throws RemoteException {
+		List<RetoDTO> retos = new ArrayList<>();
+		for(Reto r : servidorEstado.get(token).getRetos()) {
+			retos.add(RetoAssembler.retoToDTO(r));
 		}
-			
-	}
-	
-	@Override
-	public List<RetoDTO> getRetos() throws RemoteException {
-		
-		System.out.println(" * FachadaRemota getRetos()");
-		
-		List<Reto> retos = stravaService.getRetos();
-		
-		if(retos != null) {
-			return RetoAssembler.getInstance().retosDTO(retos);
-		}else {
-			throw new RemoteException("getRetos() ha fallado");
-		}
-	}
-	
-	@Override
-	public boolean crearSesionEntrenamiento(long token, SesionEntrenamientoDTO sesionDTO) throws RemoteException {
-		
-		List<SesionEntrenamiento> sesiones = stravaService.getSesiones();
-		
-		if (this.servidorEstado.containsKey(token)) {
-			SesionEntrenamientoAssembler assembler = new SesionEntrenamientoAssembler();
-			SesionEntrenamiento sesion = assembler.dtoToSesionEntrenamiento(sesionDTO);
-			if (!stravaService.crearManualSesionEntre(sesion)==false) {
-				sesiones.add(sesion);
-				return true;
-			}else {
-				throw new RemoteException("crearSesionEntrenamiento ha fallado");
-			}
-		}else {
-			throw new RemoteException("El usuario no ha iniciado sesion");
-		}
-	}
-	
-	@Override
-	public boolean crearReto(long token, RetoDTO retoDTO) throws RemoteException {
-		System.out.println(" * FachadaRemota Crear Reto");
-	
-		List<Reto> retos = stravaService.getRetos();
-		
-		if (this.servidorEstado.containsKey(token)) {
-			RetoAssembler assembler = new RetoAssembler();
-			Reto reto = assembler.dtoToReto(retoDTO);
-			if (stravaService.crearReto(reto)==true) {
-				retos.add(reto);
-				return true;
-			}else {
-				throw new RemoteException("crearReto ha fallado");
-			}
-		}else {
-			throw new RemoteException("El usuario no ha iniciado sesion");
-		}
+		return retos;
 	}
 
 	@Override
 	public List<RetoDTO> obtenerRetosActivos(long token) throws RemoteException {
-	
-		System.out.println(" * FachadaRemota Obtener Retos Activos");
-		
-		if(this.servidorEstado.containsKey(token)) {
-			List<Reto> retos = stravaService.obtenerRetosActivos();
-			
-			if(retos != null) {
-				List<RetoDTO> retosActivos = new ArrayList<>();
-				retosActivos = RetoAssembler.getInstance().retosDTO(retos);
-				return retosActivos;
-			
-			}else {
-				
-				throw new RemoteException("ObtenerRetosActivos ha fallado");
-			}
-			
-		}else {
-			throw new RemoteException("El usuario tiene que haber iniciado sesion");
+		List<RetoDTO> retosActivos = new ArrayList<>();
+		for(Reto r : servidorEstado.get(token).getRetosActivos()) {
+			retosActivos.add(RetoAssembler.retoToDTO(r));
 		}
-		
+		return retosActivos;
 	}
-	
-	public boolean aceptarReto(long token, RetoDTO retoDto) throws RemoteException{
-		
-		boolean resultado = false;
-		
-		if (this.servidorEstado.containsKey(token)) {
-			RetoAssembler assembler = new RetoAssembler();
-			Reto reto = assembler.dtoToReto(retoDto);
-			
-			if(stravaService.aceptarReto(this.servidorEstado.get(token), reto)) {	
-				List<Reto> retosActivos = stravaService.obtenerRetosActivos();
-				retosActivos.add(reto);
-				resultado = true;	
-			
-			}else {
-				throw new RemoteException("aceptarReto ha fallado");
+
+	@Override
+	public List<SesionEntrenamientoDTO> getSesiones(long token) throws RemoteException {
+		List<SesionEntrenamientoDTO> sesiones = new ArrayList<>();
+		for(SesionEntrenamiento s : servidorEstado.get(token).getSesiones()) {
+			sesiones.add(SesionEntrenamientoAssembler.sesionToDTO(s));
+		}
+		return sesiones;
+	}
+
+	@Override
+	public void crearSesion(SesionEntrenamientoDTO dto, long token) throws RemoteException {
+		System.out.println(" * Making Sesion: " + dto.getTitulo() + " " + dto.getDeporte().toString());
+		SesionEntrenamiento sesion = new SesionEntrenamiento();
+		sesion.setDeporte(dto.getDeporte());
+		sesion.setDistancia(dto.getDistancia());
+		sesion.setDuracion(dto.getDuracion());
+		sesion.setsFyH(dto.getsFyH());
+		sesion.setTitulo(dto.getTitulo());
+		Usuario u = servidorEstado.get(token);
+		appService.crearSesion(u, sesion);
+	}
+
+	@Override
+	public void crearReto(RetoDTO dto, long token) throws RemoteException {
+		System.out.println(" * Making Reto: " + dto.getNombre() + " " + dto.getDeporte().toString());
+		Reto reto = new Reto();
+		reto.setDeporte(dto.getDeporte());
+		reto.setDistancia(dto.getDistancia());
+		reto.setFechaFin(dto.getFechaFin());
+		reto.setFechaIni(dto.getFechaIni());
+		reto.setNombre(dto.getNombre());
+		reto.setTiempoObjetivo(dto.getTiempoObjetivo());
+		Usuario u = servidorEstado.get(token);
+		appService.crearReto(u, reto);
+	}
+
+	@Override
+	public void aceptarReto(String nombre, long token) throws RemoteException {
+		System.out.println(" * Activating Reto: " + nombre);
+		Usuario usuario = servidorEstado.get(token);
+		Reto reto = null;
+		for(Reto r : servidorEstado.get(token).getRetos()) {
+			if(r.toString().equals(nombre)) {
+				reto = r;
 			}
-			
-		}else {
-			throw new RemoteException("El usuario tiene que haber iniciado sesión");	
-		}	
-		return resultado;
+		}
+		if(reto != null) {
+			appService.aceptarReto(usuario, reto);
+		}
 	}
 }
