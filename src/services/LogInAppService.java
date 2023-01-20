@@ -70,8 +70,9 @@ public class LogInAppService {
 				usuarioLocal.setFcm(usuario.getFcm());
 				usuarioLocal.setFcr(usuario.getFcr());
 				usuarioLocal.setUsuarioTipo(UsuarioTipo.LOCAL);
-				
+				System.out.println(usuarioLocal.getNombre());
 				return usuarioLocal;
+				
 				
 			}else {
 				return null;

@@ -30,6 +30,8 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 
 	private Map<Long, Usuario> servidorEstado = new HashMap<>();
 	
+	private Map<String, Usuario> registro = new HashMap<>();
+	
 	List<Reto> retosActivos = new ArrayList<>();
 	
 	private LogInAppService logInService = new LogInAppService();
@@ -72,17 +74,17 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	
 	
 	@Override
-	public long loginLocal(String email, String contrasena) throws RemoteException{
+	public synchronized long loginLocal(String email, String contrasena) throws RemoteException{
 		
-		UsuarioLocal usuarioLocal = logInService.loginLocal(email, contrasena);
+		/*UsuarioLocal usuarioLocal = logInService.loginLocal(email, contrasena);
 		
-		Long token = (long) -1;
+		//long token = -1;
 		
 		if(!(usuarioLocal.getEmail() == "" && usuarioLocal.getContrasena() == "")) {
 			
 			if(!this.servidorEstado.containsValue(usuarioLocal)) {
 				
-				token = Calendar.getInstance().getTimeInMillis();
+				long token = Calendar.getInstance().getTimeInMillis();
 				System.out.println(token);
 				this.servidorEstado.put(token, usuarioLocal);
 				System.out.println(usuarioLocal);
@@ -97,7 +99,8 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		}else {
 			
 			throw new RemoteException("El loginLocal ha fallado");
-		}
+		}*/
+		return 3;
 	}
 	
 	public long loginGoogle(String email) throws RemoteException{
