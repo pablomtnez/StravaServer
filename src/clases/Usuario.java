@@ -39,6 +39,11 @@ public class Usuario implements Serializable{
 	public Usuario() {
 	}
 
+	public Usuario(String nombre2, String email2, Date fechaNac2, double peso2, double altura2, double fcm2,
+			double fcr2, clases.UsuarioTipo usuarioTipo2, int proveedor) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -111,7 +116,7 @@ public class Usuario implements Serializable{
 		this.retos = retos;
 	}
 	
-	public void añadirReto(Reto reto) {
+	public void anadirReto(Reto reto) {
 		if(reto != null && !this.retos.contains(reto)) {
 			retos.add(reto);
 		}
@@ -125,7 +130,7 @@ public class Usuario implements Serializable{
 		this.sesiones = sesiones;
 	}
 	
-	public void añadirSesion(SesionEntrenamiento sesion) {
+	public void anadirSesion(SesionEntrenamiento sesion) {
 		if(sesion != null && !this.sesiones.contains(sesion)) {
 			sesiones.add(sesion);
 		}

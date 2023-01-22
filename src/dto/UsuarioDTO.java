@@ -18,12 +18,19 @@ public class UsuarioDTO  implements Serializable{
 	private double fcm;	//Frecuencia cardiaca máxima
 	private double fcr;	//Frecuencia cardiaca reposo
 	private UsuarioTipo UsuarioTipo;
+	private int proveedor;
 	
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public int getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(int proveedor) {
+		this.proveedor = proveedor;
 	}
 	public String getEmail() {
 		return email;

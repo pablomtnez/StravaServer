@@ -2,10 +2,10 @@ package test;
 
 import java.util.List;
 
-import dto.DeporteDTO;
+//import dto.DeporteDTO;
 import dto.RetoDTO;
 import dto.SesionEntrenamientoDTO;
-import dto.UsuarioTipoDTO;
+//import dto.UsuarioTipoDTO;
 import remote.FachadaRemota;
 
 public class LocalTest {

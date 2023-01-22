@@ -35,6 +35,94 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		// TODO Auto-generated constructor stub
 	}
 
+	/*	
+	@Override
+	public synchronized long loginLocal(String email, String contrasena) throws RemoteException {
+		System.out.println(" * RemoteFacade loginLocal(): " + email + " / " + contrasena);
+		
+		UsuarioLocal uL = loginService.loginLocal(email, contrasena);
+		
+		if(uL != null) {
+			if(!this.servidorEstado.values().contains(uL)) {
+				long token = Calendar.getInstance().getTimeInMillis();
+				this.servidorEstado.put(token, uL);
+				return token;
+			}else {
+				throw new RemoteException("User is already logged in!");
+			}
+		}else {
+			throw new RemoteException("Login fails!");
+		}
+		
+	}
+	
+	@Override
+	public synchronized long loginFacebook(String email) throws RemoteException {
+		System.out.println(" * RemoteFacade loginFacebook(): " + email + "");
+		
+		Usuario u = loginService.loginFacebook(email);
+		
+		if(u != null) {
+			if(!this.servidorEstado.values().contains(u)) {
+				long token = Calendar.getInstance().getTimeInMillis();
+				this.servidorEstado.put(token, u);
+				return token;
+			}else {
+				throw new RemoteException("User is already logged in!");
+			}
+		}else {
+			throw new RemoteException("Login fails!");
+		}
+	}
+
+	
+	
+	@Override
+	public synchronized long loginGoogle(String email) throws RemoteException {
+		System.out.println(" * RemoteFacade loginFacebook(): " + email + "");
+		
+		Usuario u = loginService.loginFacebook(email);
+		
+		if(u != null) {
+			if(!this.servidorEstado.values().contains(u)) {
+				long token = Calendar.getInstance().getTimeInMillis();
+				this.servidorEstado.put(token, u);
+				return token;
+			}else {
+				throw new RemoteException("User is already logged in!");
+			}
+		}else {
+			throw new RemoteException("Login fails!");
+		}
+	}
+	*
+	*	CAMBIAMOS TODOS LOS LOGIN POR UNO ÚNICO:
+	*/
+	
+	
+	
+	
+	@Override
+	public synchronized long logIn(String email, String contrasena) throws RemoteException {
+		System.out.println(" * RemoteFacade login(): " + email + " / " + contrasena);
+		
+		Usuario usuario = loginService.logIn(email, contrasena);
+		
+		if(usuario != null) {
+			if(!this.servidorEstado.values().contains(usuario)) {
+				long token = Calendar.getInstance().getTimeInMillis();
+				this.servidorEstado.put(token, usuario);
+				return token;
+			}else {
+				throw new RemoteException("User is already logged in!");
+			}
+		}else {
+			throw new RemoteException("Login fails!");
+		}
+		
+	}
+	
+	/*
 	@Override
 	public synchronized void registarLocal(UsuarioDTO dto) throws RemoteException{
 		System.out.println(" * FachadaRemota registrarLocal(): " + dto.getEmail() + " / " + dto.getContrasena());
@@ -54,26 +142,6 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		if(!loginService.registrarLocal(uL)) {
 			throw new RemoteException("User is already logged in!");
 		}
-	}
-	
-	@Override
-	public synchronized long loginLocal(String email, String contrasena) throws RemoteException {
-		System.out.println(" * RemoteFacade loginLocal(): " + email + " / " + contrasena);
-		
-		UsuarioLocal uL = loginService.loginLocal(email, contrasena);
-		
-		if(uL != null) {
-			if(!this.servidorEstado.values().contains(uL)) {
-				long token = Calendar.getInstance().getTimeInMillis();
-				this.servidorEstado.put(token, uL);
-				return token;
-			}else {
-				throw new RemoteException("User is already logged in!");
-			}
-		}else {
-			throw new RemoteException("Login fails!");
-		}
-		
 	}
 
 	@Override
@@ -95,25 +163,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		}
 	}
 
-	@Override
-	public synchronized long loginFacebook(String email) throws RemoteException {
-		System.out.println(" * RemoteFacade loginFacebook(): " + email + "");
-		
-		Usuario u = loginService.loginFacebook(email);
-		
-		if(u != null) {
-			if(!this.servidorEstado.values().contains(u)) {
-				long token = Calendar.getInstance().getTimeInMillis();
-				this.servidorEstado.put(token, u);
-				return token;
-			}else {
-				throw new RemoteException("User is already logged in!");
-			}
-		}else {
-			throw new RemoteException("Login fails!");
-		}
-	}
-
+	
 	@Override
 	public synchronized void registrarGoogle(UsuarioDTO dto) throws RemoteException {
 		System.out.println(" * FachadaRemota registrarGoogle(): " + dto.getEmail() + "");
@@ -133,26 +183,39 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		}
 		
 	}
-
+	*
+	*	CAMBIAMOS TODOS LOS REGISTRAR POR UNO ÚNICO:
+	*/
 
 	@Override
-	public synchronized long loginGoogle(String email) throws RemoteException {
-		System.out.println(" * RemoteFacade loginFacebook(): " + email + "");
+	public synchronized void registrar(UsuarioDTO dto) throws RemoteException{
+		System.out.println(" * FachadaRemota registrar(): " + dto.getEmail() + " / " + dto.getContrasena());
 		
-		Usuario u = loginService.loginFacebook(email);
+		Usuario usuario;
 		
-		if(u != null) {
-			if(!this.servidorEstado.values().contains(u)) {
-				long token = Calendar.getInstance().getTimeInMillis();
-				this.servidorEstado.put(token, u);
-				return token;
-			}else {
-				throw new RemoteException("User is already logged in!");
-			}
-		}else {
-			throw new RemoteException("Login fails!");
+		if(dto.getProveedor() == 0) {
+			//Con contraseña
+			usuario = new UsuarioLocal(dto.getNombre(), dto.getEmail(), dto.getFechaNac(), dto.getPeso(), dto.getAltura(), dto.getFcm(), dto.getFcr(), dto.getUsuarioTipo(), dto.getContrasena(), dto.getProveedor());
+		} else {
+			//Sin contraseña
+			usuario = new Usuario(dto.getNombre(), dto.getEmail(), dto.getFechaNac(), dto.getPeso(), dto.getAltura(), dto.getFcm(), dto.getFcr(), dto.getUsuarioTipo(), dto.getProveedor());
+		}
+		
+//		uL.setAltura(dto.getAltura());
+//		uL.setContrasena(dto.getContrasena());
+//		uL.setEmail(dto.getEmail());
+//		uL.setFcm(dto.getFcm());
+//		uL.setFcr(dto.getFcr());
+//		uL.setFechaNac(dto.getFechaNac());
+//		uL.setNombre(dto.getNombre());
+//		uL.setPeso(dto.getPeso());
+//		uL.setUsuarioTipo(UsuarioTipo.LOCAL);
+		
+		if(!loginService.registro(usuario)) {
+			throw new RemoteException("User is already logged in!");
 		}
 	}
+	
 
 	@Override
 	public synchronized void logout(long token) throws RemoteException {
@@ -164,10 +227,12 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 			throw new RemoteException("User is not logged in!");
 		}
 	}
+	
 
 	@Override
 	public List<RetoDTO> getReto(long token) throws RemoteException {
 		List<RetoDTO> retos = new ArrayList<>();
+		//C - Se puede poner de otra forma
 		for(Reto r : servidorEstado.get(token).getRetos()) {
 			retos.add(RetoAssembler.retoToDTO(r));
 		}
@@ -177,6 +242,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	@Override
 	public List<RetoDTO> obtenerRetosActivos(long token) throws RemoteException {
 		List<RetoDTO> retosActivos = new ArrayList<>();
+		//C - Se puede poner de otra forma
 		for(Reto r : servidorEstado.get(token).getRetosActivos()) {
 			retosActivos.add(RetoAssembler.retoToDTO(r));
 		}
@@ -186,6 +252,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 	@Override
 	public List<SesionEntrenamientoDTO> getSesiones(long token) throws RemoteException {
 		List<SesionEntrenamientoDTO> sesiones = new ArrayList<>();
+		//C - Se puede poner de otra forma
 		for(SesionEntrenamiento s : servidorEstado.get(token).getSesiones()) {
 			sesiones.add(SesionEntrenamientoAssembler.sesionToDTO(s));
 		}
@@ -201,8 +268,8 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		sesion.setDuracion(dto.getDuracion());
 		sesion.setsFyH(dto.getsFyH());
 		sesion.setTitulo(dto.getTitulo());
-		Usuario u = servidorEstado.get(token);
-		appService.crearSesion(u, sesion);
+		Usuario usuario = servidorEstado.get(token);
+		appService.crearSesion(usuario, sesion);
 	}
 
 	@Override
@@ -215,8 +282,8 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		reto.setFechaIni(dto.getFechaIni());
 		reto.setNombre(dto.getNombre());
 		reto.setTiempoObjetivo(dto.getTiempoObjetivo());
-		Usuario u = servidorEstado.get(token);
-		appService.crearReto(u, reto);
+		Usuario usuario = servidorEstado.get(token);
+		appService.crearReto(usuario, reto);
 	}
 
 	@Override
@@ -224,6 +291,7 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 		System.out.println(" * Activating Reto: " + nombre);
 		Usuario usuario = servidorEstado.get(token);
 		Reto reto = null;
+		//C - Se puede poner de otra forma
 		for(Reto r : servidorEstado.get(token).getRetos()) {
 			if(r.toString().equals(nombre)) {
 				reto = r;
@@ -233,4 +301,16 @@ public class FachadaRemota extends UnicastRemoteObject implements IFachadaRemota
 			appService.aceptarReto(usuario, reto);
 		}
 	}
+
+//	@Override
+//	public void registrar(UsuarioDTO dto) throws RemoteException {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
+//	@Override
+//	public void logIn(String email, String contrasena) throws RemoteException {
+//		// TODO Auto-generated method stub
+//		
+//	}
 }

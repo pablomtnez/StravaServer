@@ -8,15 +8,14 @@ public class UsuarioLocal extends Usuario {
 	private String contrasena;
 
 	public UsuarioLocal(String nombre, String email, Date fechaNac, double peso, double altura, double fcm, double fcr,
-			clases.UsuarioTipo usuarioTipo, List<Reto> retos, List<SesionEntrenamiento> sesiones,
-			List<Reto> retosActivos, String contrasena) {
-		super(nombre, email, fechaNac, peso, altura, fcm, fcr, usuarioTipo, retos, sesiones, retosActivos);
+			clases.UsuarioTipo usuarioTipo, String contrasena, int proveedor) {
+		super(nombre, email, fechaNac, peso, altura, fcm, fcr, usuarioTipo, proveedor);
 		this.contrasena = contrasena;
 	}
 
-	public UsuarioLocal() {
-		super();
-	}
+//	public UsuarioLocal() {
+//		super();
+//	}
 
 
 	public String getContrasena() {
